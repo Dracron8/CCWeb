@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="C&C Coatings Sarnia ON - Powder coating, PTFE/fluoropolymer non-stick, Halar ECTFE. Automotive, industrial, bakeware since 20+ years.">
+    <title>C&C Coatings | Powder & Non-Stick Coatings - Sarnia, ON</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; color: #333; background: #f8f8f8; }
+        header { background: #1a2a44; color: white; padding: 1rem; text-align: center; }
+        .contact-bar { background: #c8102e; padding: 0.5rem; text-align: center; font-weight: bold; }
+        section { padding: 2rem 1rem; max-width: 1200px; margin: auto; }
+        h1, h2 { color: #1a2a44; }
+        .hero { background: #1a2a44; color: white; text-align: center; padding: 4rem 1rem; }
+        .services-grid, .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .card { background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .gallery img { width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        form { max-width: 600px; margin: auto; }
+        input, textarea { width: 100%; padding: 0.75rem; margin: 0.5rem 0; border: 1px solid #ccc; border-radius: 4px; }
+        button { background: #c8102e; color: white; padding: 1rem 2rem; border: none; border-radius: 4px; cursor: pointer; font-size: 1.1rem; }
+        footer { background: #1a2a44; color: white; text-align: center; padding: 1rem; }
+        .logo { max-width: 200px; }
+    </style>
+</head>
+<body>
+    <div class="contact-bar">
+        <strong>+1 (519) 332-8175</strong> | tom@cccoatings.com | 1380 Lougar Ave, Sarnia, ON N7S 5N7
+    </div>
+    <header>
+        <img src="https://cccoatings.com/cc-logo.jpg" alt="C&C Coatings Logo" class="logo" onerror="this.style.display='none';"> 
+        <h1>C&C Coatings</h1>
+        <p>Durable Powder & Non-Stick Finishes • Automotive • Industrial • Bakeware</p>
+    </header>
+
+    <section class="hero">
+        <h2>Coating It Right Since Before the Internet Was Cool</h2>
+        <p>20+ years in Sarnia’s Chemical Valley. Sandblast, burn-off, apply, cure — tough finishes that last.</p>
+        <a href="#quote"><button>Request Quote Now</button></a>
+    </section>
+
+    <section id="process">
+        <h2>Our Process</h2>
+        <div class="services-grid">
+            <div class="card">
+                <h3>Sandblasting & Prep</h3>
+                <p>Remove rust, old coatings, contaminants.</p>
+            </div>
+            <div class="card">
+                <h3>Powder Application</h3>
+                <p>Even coverage, high durability for rims, frames, playgrounds, industrial parts.</p>
+            </div>
+            <div class="card">
+                <h3>Curing & Non-Stick</h3>
+                <p>Batch oven for PTFE/fluoropolymer bakeware & Halar® ECTFE chemical resistance.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2>Services</h2>
+        <div class="services-grid">
+            <div class="card">
+                <h3>Powder Coating</h3>
+                <p>Automotive (rims, frames, valve covers, engine parts), industrial, playground equipment.</p>
+            </div>
+            <div class="card">
+                <h3>PTFE / Fluoropolymer Non-Stick</h3>
+                <p>Bakeware, pizza trays, commercial bakery, medical, low-friction applications.</p>
+            </div>
+            <div class="card">
+                <h3>Halar® (ECTFE)</h3>
+                <p>Extreme chemical/corrosion resistance.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery">
+        <h2>Gallery - Examples of Our Work</h2>
+        <div class="gallery">
+            <!-- Images from previous searches -->
+            <img src="https://picsum.photos/id/1015/600/400" alt="Powder Coated Parts">
+            <img src="https://picsum.photos/id/106/600/400" alt="Sandblasting">
+            <img src="https://picsum.photos/id/201/600/400" alt="Non-Stick Bakeware">
+            <img src="https://picsum.photos/id/1074/600/400" alt="Automotive Rims">
+        </div>
+    </section>
+
+    <section id="quote">
+        <h2>Get a Quote</h2>
+        <form id="quoteForm">
+            <input type="text" placeholder="Name" required>
+            <input type="email" placeholder="Email" required>
+            <input type="tel" placeholder="Phone">
+            <textarea placeholder="Project details (parts, qty, powder/PTFE/Halar)" rows="5" required></textarea>
+            <button type="submit">Send Request</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>C&C Coatings • 1380 Lougar Ave, Sarnia, ON N7S 5N7 • (519) 332-8175 • tom@cccoatings.com</p>
+        <p>20+ Years Serving Southern Ontario</p>
+    </footer>
+
+    <script>
+        document.getElementById('quoteForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Quote request received! We will contact you shortly.');
+        });
+    </script>
+</body>
+</html>
