@@ -34,6 +34,15 @@
             text-align: center; 
             padding: 3rem 1rem; 
         }
+        .intro-video { 
+            display: block; 
+            width: 100%; 
+            max-width: 560px; 
+            margin: 0 auto 2rem; 
+            border: 3px solid #c8102e; 
+            border-radius: 8px; 
+            background: #000; 
+        }
         section { 
             padding: 3rem 1rem; 
             max-width: 1200px; 
@@ -73,6 +82,28 @@
             font-size: 1.3rem; 
             width: 100%; 
         }
+        .quick-quote { 
+            display: none; 
+            max-width: 600px; 
+            margin: 0 auto 2.5rem; 
+            text-align: center; 
+        }
+        .quick-quote a.btn { 
+            display: block; 
+            background: #c8102e; 
+            color: white; 
+            text-decoration: none; 
+            padding: 1.2rem 1rem; 
+            border-radius: 4px; 
+            font-size: 1.3rem; 
+            font-weight: bold; 
+        }
+        .quick-quote p { margin-top: 0.75rem; font-size: 1rem; }
+        .or-divider { display: none; text-align: center; font-weight: bold; margin-bottom: 1rem; }
+        @media (hover: none) and (pointer: coarse) {
+            .quick-quote, .or-divider { display: block; }
+        }
+        .contact-bar a { color: white; text-decoration: none; }
         footer { 
             background: #c8102e; 
             color: white; 
@@ -83,7 +114,7 @@
 </head>
 <body>
     <div class="contact-bar">
-        +1 (519) 332-8175 | tom@cccoatings.com<br>
+        <a href="tel:+15193328175">+1 (519) 332-8175</a> | <a href="mailto:tom@cccoatings.com">tom@cccoatings.com</a><br>
         1380 Lougar Ave, Sarnia, ON N7S 5N7
     </div>
 
@@ -92,6 +123,7 @@
     </header>
 
     <section class="hero">
+        <video id="introVideo" class="intro-video" src="assets/video/black-white.mp4" muted autoplay playsinline preload="auto" aria-label="C&C Coatings powder coating in action"></video>
         <h2 style="font-size:2.2rem; color:#c8102e;">Durable Powder & Non-Stick Finishes</h2>
         <p style="font-size:1.4rem;">Automotive • Industrial • Bakeware • 20+ Years in Sarnia Chemical Valley</p>
         <a href="#quote"><button>Request Quote Now</button></a>
@@ -138,12 +170,22 @@
 
     <section id="quote">
         <h2>Get a Quote Fast</h2>
+        <div class="quick-quote">
+            <a class="btn" href="mailto:tom@cccoatings.com?subject=Website%20quick%20quote%20%E2%80%93%20photo%20attached&body=Hi%20C%26C%2C%0A%0AI%27ve%20attached%20a%20photo%20of%20my%20parts.%20I%27m%20looking%20for%20a%20quote%20on%3A%0A%0A">Email us a photo for a quick quote</a>
+            <p>Opens your email app. Attach a photo of your parts and tell us what you need coated.</p>
+        </div>
+        <p class="or-divider">— or fill in the details below —</p>
         <form id="quoteForm">
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Email" required>
-            <input type="tel" placeholder="Phone" value="+1 (519)">
-            <textarea placeholder="Tell us about your parts (rims, bakeware, industrial, etc.)" rows="4" required></textarea>
+            <input type="text" id="qName" name="name" placeholder="Your Name" required>
+            <input type="email" id="qEmail" name="email" placeholder="Email" required>
+            <input type="tel" id="qPhone" name="phone" placeholder="Phone" value="+1 (519)">
+            <textarea id="qDetails" name="details" placeholder="Tell us about your parts (rims, bakeware, industrial, etc.)" rows="4" required></textarea>
             <button type="submit">Send Quote Request</button>
+            <p id="quoteNote" style="text-align:center; margin-top:1rem; font-size:1rem;">
+                This opens your email app with the request filled in. Or email
+                <a href="mailto:tom@cccoatings.com" style="color:#c8102e;">tom@cccoatings.com</a>
+                or call <a href="tel:+15193328175" style="color:#c8102e;">(519) 332-8175</a>.
+            </p>
         </form>
     </section>
 
@@ -153,9 +195,38 @@
     </footer>
 
     <script>
-        document.getElementById('quoteForm').addEventListener('submit', function(e) {
+        // Intro video: plays once on page load / refresh, stops at 8.5 seconds.
+        (function () {
+            var video = document.getElementById('introVideo');
+            if (!video) return;
+            var STOP_AT = 8.5;
+            video.loop = false;
+            video.addEventListener('timeupdate', function () {
+                if (video.currentTime >= STOP_AT && !video.paused) {
+                    video.pause();
+                }
+            });
+            var attempt = video.play();
+            if (attempt && attempt.catch) attempt.catch(function () { /* autoplay blocked: show first frame */ });
+        })();
+
+        // Quote form: builds an email to tom@cccoatings.com and opens the visitor's mail app.
+        document.getElementById('quoteForm').addEventListener('submit', function (e) {
             e.preventDefault();
-            alert('Quote request sent to tom@cccoatings.com. We will contact you shortly!');
+            var name = document.getElementById('qName').value.trim();
+            var email = document.getElementById('qEmail').value.trim();
+            var phone = document.getElementById('qPhone').value.trim();
+            var details = document.getElementById('qDetails').value.trim();
+            var subject = 'Website quote request from ' + name;
+            var body = 'Name: ' + name + '\n' +
+                       'Email: ' + email + '\n' +
+                       'Phone: ' + phone + '\n\n' +
+                       'Parts / details:\n' + details + '\n';
+            window.location.href = 'mailto:tom@cccoatings.com' +
+                '?subject=' + encodeURIComponent(subject) +
+                '&body=' + encodeURIComponent(body);
+            document.getElementById('quoteNote').textContent =
+                'Your email app should now be open with the request. If it did not open, email tom@cccoatings.com or call (519) 332-8175.';
         });
     </script>
 </body>
