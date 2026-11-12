@@ -56,6 +56,36 @@
         }
         .content { flex: 1; min-width: 0; }
         .top-strip { background: #c8102e; height: 2.6rem; }
+        /* Right-hand colour strip: pinned like the sidebar, contents move with page scroll */
+        .colour-strip { 
+            width: 142px; 
+            flex-shrink: 0; 
+            position: sticky; 
+            top: 0; 
+            height: 100vh; 
+            align-self: flex-start; 
+            overflow: hidden; 
+            background: #ffffff; 
+            border-left: 1px solid #e5e5e5; 
+        }
+        .colour-strip-inner { will-change: transform; }
+        .colour-strip button.ral-bar { 
+            display: block; 
+            width: 100%; 
+            height: 40px; 
+            padding: 0 0.6rem; 
+            border: none; 
+            border-radius: 0; 
+            text-align: left; 
+            font-size: 0.72rem; 
+            font-weight: normal; 
+            letter-spacing: 0.06em; 
+            opacity: 1; 
+            cursor: pointer; 
+        }
+        .colour-strip button.ral-bar span { opacity: 0.6; }
+        .colour-strip button.ral-bar:hover span, .colour-strip button.ral-bar.selected span { opacity: 1; font-weight: bold; }
+        .colour-strip button.ral-bar.selected { outline: 3px solid #1a2a44; outline-offset: -3px; }
         .mobile-quote-bar { display: none; }
         @media (max-width: 899px) {
             .layout { display: block; }
@@ -74,6 +104,7 @@
             .addr-br { display: none; }
             .sidebar .btn-quote { display: none; }
             .top-strip { display: none; }
+            .colour-strip { display: none; }
             .mobile-quote-bar { 
                 display: block; 
                 position: fixed; 
@@ -159,32 +190,6 @@
         @media (hover: none) and (pointer: coarse) {
             .quick-quote, .or-divider { display: block; }
         }
-        /* Colours: single column of RAL bars with the name written inside each */
-        .colours-intro, .colours-note { text-align: center; margin-bottom: 1rem; }
-        .colours-note { margin-top: 1rem; font-size: 0.95rem; color: #555; }
-        .colour-list { 
-            max-width: 600px; 
-            margin: 0 auto; 
-            max-height: 70vh; 
-            overflow-y: auto; 
-            border: 2px solid #c8102e; 
-            border-radius: 8px; 
-        }
-        .colour-list button.colour-row { 
-            display: block; 
-            width: 100%; 
-            text-align: left; 
-            padding: 0.7rem 1rem; 
-            border: none; 
-            border-radius: 0; 
-            font-size: 0.9rem; 
-            font-weight: normal; 
-            letter-spacing: 0.02em; 
-            cursor: pointer; 
-            opacity: 1; 
-        }
-        .colour-list button.colour-row:hover, .colour-list button.colour-row:focus { outline: 3px solid #1a2a44; outline-offset: -3px; }
-        .colour-list button.colour-row.selected { outline: 3px solid #1a2a44; outline-offset: -3px; font-weight: bold; }
         footer { 
             background: #c8102e; 
             color: white; 
@@ -253,228 +258,6 @@
         </div>
     </section>
 
-    <section id="colours">
-        <h2>Colours</h2>
-        <p class="colours-intro">Standard RAL powder colours. Click a colour to add it to your quote request.</p>
-        <div class="colour-list" id="colourList">
-            <button type="button" class="colour-row" style="background:#AB2524; color:#ffffff;" data-ral="RAL 3000 Flame red">RAL 3000 &nbsp;Flame red</button>
-            <button type="button" class="colour-row" style="background:#A02128; color:#ffffff;" data-ral="RAL 3001 Signal red">RAL 3001 &nbsp;Signal red</button>
-            <button type="button" class="colour-row" style="background:#A1232B; color:#ffffff;" data-ral="RAL 3002 Carmine red">RAL 3002 &nbsp;Carmine red</button>
-            <button type="button" class="colour-row" style="background:#8D1D2C; color:#ffffff;" data-ral="RAL 3003 Ruby red">RAL 3003 &nbsp;Ruby red</button>
-            <button type="button" class="colour-row" style="background:#701F29; color:#ffffff;" data-ral="RAL 3004 Purple red">RAL 3004 &nbsp;Purple red</button>
-            <button type="button" class="colour-row" style="background:#5E2028; color:#ffffff;" data-ral="RAL 3005 Wine red">RAL 3005 &nbsp;Wine red</button>
-            <button type="button" class="colour-row" style="background:#402225; color:#ffffff;" data-ral="RAL 3007 Black red">RAL 3007 &nbsp;Black red</button>
-            <button type="button" class="colour-row" style="background:#703731; color:#ffffff;" data-ral="RAL 3009 Oxide red">RAL 3009 &nbsp;Oxide red</button>
-            <button type="button" class="colour-row" style="background:#7E292C; color:#ffffff;" data-ral="RAL 3011 Brown red">RAL 3011 &nbsp;Brown red</button>
-            <button type="button" class="colour-row" style="background:#CB8D73; color:#1a1a1a;" data-ral="RAL 3012 Beige red">RAL 3012 &nbsp;Beige red</button>
-            <button type="button" class="colour-row" style="background:#9C322E; color:#ffffff;" data-ral="RAL 3013 Tomato red">RAL 3013 &nbsp;Tomato red</button>
-            <button type="button" class="colour-row" style="background:#D47479; color:#ffffff;" data-ral="RAL 3014 Antique pink">RAL 3014 &nbsp;Antique pink</button>
-            <button type="button" class="colour-row" style="background:#E1A6AD; color:#1a1a1a;" data-ral="RAL 3015 Light pink">RAL 3015 &nbsp;Light pink</button>
-            <button type="button" class="colour-row" style="background:#AC4034; color:#ffffff;" data-ral="RAL 3016 Coral red">RAL 3016 &nbsp;Coral red</button>
-            <button type="button" class="colour-row" style="background:#D3545F; color:#ffffff;" data-ral="RAL 3017 Rose">RAL 3017 &nbsp;Rose</button>
-            <button type="button" class="colour-row" style="background:#D14152; color:#ffffff;" data-ral="RAL 3018 Strawberry red">RAL 3018 &nbsp;Strawberry red</button>
-            <button type="button" class="colour-row" style="background:#C1121C; color:#ffffff;" data-ral="RAL 3020 Traffic red">RAL 3020 &nbsp;Traffic red</button>
-            <button type="button" class="colour-row" style="background:#D56D56; color:#ffffff;" data-ral="RAL 3022 Salmon pink">RAL 3022 &nbsp;Salmon pink</button>
-            <button type="button" class="colour-row" style="background:#F70000; color:#ffffff;" data-ral="RAL 3024 Luminous red">RAL 3024 &nbsp;Luminous red</button>
-            <button type="button" class="colour-row" style="background:#FF0000; color:#ffffff;" data-ral="RAL 3026 Luminous bright red">RAL 3026 &nbsp;Luminous bright red</button>
-            <button type="button" class="colour-row" style="background:#B42041; color:#ffffff;" data-ral="RAL 3027 Raspberry red">RAL 3027 &nbsp;Raspberry red</button>
-            <button type="button" class="colour-row" style="background:#E72512; color:#ffffff;" data-ral="RAL 3028 Pure red">RAL 3028 &nbsp;Pure red</button>
-            <button type="button" class="colour-row" style="background:#AC323B; color:#ffffff;" data-ral="RAL 3031 Orient red">RAL 3031 &nbsp;Orient red</button>
-            <button type="button" class="colour-row" style="background:#711521; color:#ffffff;" data-ral="RAL 3032 Pearl ruby red">RAL 3032 &nbsp;Pearl ruby red</button>
-            <button type="button" class="colour-row" style="background:#B24C43; color:#ffffff;" data-ral="RAL 3033 Pearl pink">RAL 3033 &nbsp;Pearl pink</button>
-            <button type="button" class="colour-row" style="background:#DD7907; color:#ffffff;" data-ral="RAL 2000 Yellow orange">RAL 2000 &nbsp;Yellow orange</button>
-            <button type="button" class="colour-row" style="background:#BE4E20; color:#ffffff;" data-ral="RAL 2001 Red orange">RAL 2001 &nbsp;Red orange</button>
-            <button type="button" class="colour-row" style="background:#C63927; color:#ffffff;" data-ral="RAL 2002 Blood orange">RAL 2002 &nbsp;Blood orange</button>
-            <button type="button" class="colour-row" style="background:#FA842B; color:#1a1a1a;" data-ral="RAL 2003 Pastel orange">RAL 2003 &nbsp;Pastel orange</button>
-            <button type="button" class="colour-row" style="background:#E75B12; color:#ffffff;" data-ral="RAL 2004 Pure orange">RAL 2004 &nbsp;Pure orange</button>
-            <button type="button" class="colour-row" style="background:#FF2300; color:#ffffff;" data-ral="RAL 2005 Luminous orange">RAL 2005 &nbsp;Luminous orange</button>
-            <button type="button" class="colour-row" style="background:#FFA421; color:#1a1a1a;" data-ral="RAL 2007 Luminous bright orange">RAL 2007 &nbsp;Luminous bright orange</button>
-            <button type="button" class="colour-row" style="background:#F3752C; color:#ffffff;" data-ral="RAL 2008 Bright red orange">RAL 2008 &nbsp;Bright red orange</button>
-            <button type="button" class="colour-row" style="background:#E15501; color:#ffffff;" data-ral="RAL 2009 Traffic orange">RAL 2009 &nbsp;Traffic orange</button>
-            <button type="button" class="colour-row" style="background:#D4652F; color:#ffffff;" data-ral="RAL 2010 Signal orange">RAL 2010 &nbsp;Signal orange</button>
-            <button type="button" class="colour-row" style="background:#EC7C25; color:#ffffff;" data-ral="RAL 2011 Deep orange">RAL 2011 &nbsp;Deep orange</button>
-            <button type="button" class="colour-row" style="background:#DB6A50; color:#ffffff;" data-ral="RAL 2012 Salmon orange">RAL 2012 &nbsp;Salmon orange</button>
-            <button type="button" class="colour-row" style="background:#954527; color:#ffffff;" data-ral="RAL 2013 Pearl orange">RAL 2013 &nbsp;Pearl orange</button>
-            <button type="button" class="colour-row" style="background:#FA4402; color:#ffffff;" data-ral="RAL 2017 RAL orange">RAL 2017 &nbsp;RAL orange</button>
-            <button type="button" class="colour-row" style="background:#CDBA88; color:#1a1a1a;" data-ral="RAL 1000 Green beige">RAL 1000 &nbsp;Green beige</button>
-            <button type="button" class="colour-row" style="background:#D0B084; color:#1a1a1a;" data-ral="RAL 1001 Beige">RAL 1001 &nbsp;Beige</button>
-            <button type="button" class="colour-row" style="background:#D2AA6D; color:#1a1a1a;" data-ral="RAL 1002 Sand yellow">RAL 1002 &nbsp;Sand yellow</button>
-            <button type="button" class="colour-row" style="background:#F9A800; color:#1a1a1a;" data-ral="RAL 1003 Signal yellow">RAL 1003 &nbsp;Signal yellow</button>
-            <button type="button" class="colour-row" style="background:#E49E00; color:#1a1a1a;" data-ral="RAL 1004 Golden yellow">RAL 1004 &nbsp;Golden yellow</button>
-            <button type="button" class="colour-row" style="background:#CB8E00; color:#ffffff;" data-ral="RAL 1005 Honey yellow">RAL 1005 &nbsp;Honey yellow</button>
-            <button type="button" class="colour-row" style="background:#E29000; color:#1a1a1a;" data-ral="RAL 1006 Maize yellow">RAL 1006 &nbsp;Maize yellow</button>
-            <button type="button" class="colour-row" style="background:#E88C00; color:#1a1a1a;" data-ral="RAL 1007 Daffodil yellow">RAL 1007 &nbsp;Daffodil yellow</button>
-            <button type="button" class="colour-row" style="background:#AF804F; color:#ffffff;" data-ral="RAL 1011 Brown beige">RAL 1011 &nbsp;Brown beige</button>
-            <button type="button" class="colour-row" style="background:#DDAF27; color:#1a1a1a;" data-ral="RAL 1012 Lemon yellow">RAL 1012 &nbsp;Lemon yellow</button>
-            <button type="button" class="colour-row" style="background:#E3D9C6; color:#1a1a1a;" data-ral="RAL 1013 Oyster white">RAL 1013 &nbsp;Oyster white</button>
-            <button type="button" class="colour-row" style="background:#DDC49A; color:#1a1a1a;" data-ral="RAL 1014 Ivory">RAL 1014 &nbsp;Ivory</button>
-            <button type="button" class="colour-row" style="background:#E6D2B5; color:#1a1a1a;" data-ral="RAL 1015 Light ivory">RAL 1015 &nbsp;Light ivory</button>
-            <button type="button" class="colour-row" style="background:#F1DD38; color:#1a1a1a;" data-ral="RAL 1016 Sulfur yellow">RAL 1016 &nbsp;Sulfur yellow</button>
-            <button type="button" class="colour-row" style="background:#F6A950; color:#1a1a1a;" data-ral="RAL 1017 Saffron yellow">RAL 1017 &nbsp;Saffron yellow</button>
-            <button type="button" class="colour-row" style="background:#FACA30; color:#1a1a1a;" data-ral="RAL 1018 Zinc yellow">RAL 1018 &nbsp;Zinc yellow</button>
-            <button type="button" class="colour-row" style="background:#A48F7A; color:#ffffff;" data-ral="RAL 1019 Grey beige">RAL 1019 &nbsp;Grey beige</button>
-            <button type="button" class="colour-row" style="background:#A08F65; color:#ffffff;" data-ral="RAL 1020 Olive yellow">RAL 1020 &nbsp;Olive yellow</button>
-            <button type="button" class="colour-row" style="background:#F6B600; color:#1a1a1a;" data-ral="RAL 1021 Colza yellow">RAL 1021 &nbsp;Colza yellow</button>
-            <button type="button" class="colour-row" style="background:#F7B500; color:#1a1a1a;" data-ral="RAL 1023 Traffic yellow">RAL 1023 &nbsp;Traffic yellow</button>
-            <button type="button" class="colour-row" style="background:#BA8F4C; color:#ffffff;" data-ral="RAL 1024 Ochre yellow">RAL 1024 &nbsp;Ochre yellow</button>
-            <button type="button" class="colour-row" style="background:#FFFF00; color:#1a1a1a;" data-ral="RAL 1026 Luminous yellow">RAL 1026 &nbsp;Luminous yellow</button>
-            <button type="button" class="colour-row" style="background:#A77F0E; color:#ffffff;" data-ral="RAL 1027 Curry">RAL 1027 &nbsp;Curry</button>
-            <button type="button" class="colour-row" style="background:#FF9B00; color:#1a1a1a;" data-ral="RAL 1028 Melon yellow">RAL 1028 &nbsp;Melon yellow</button>
-            <button type="button" class="colour-row" style="background:#E2A300; color:#1a1a1a;" data-ral="RAL 1032 Broom yellow">RAL 1032 &nbsp;Broom yellow</button>
-            <button type="button" class="colour-row" style="background:#F99A1C; color:#1a1a1a;" data-ral="RAL 1033 Dahlia yellow">RAL 1033 &nbsp;Dahlia yellow</button>
-            <button type="button" class="colour-row" style="background:#EB9C52; color:#1a1a1a;" data-ral="RAL 1034 Pastel yellow">RAL 1034 &nbsp;Pastel yellow</button>
-            <button type="button" class="colour-row" style="background:#908370; color:#ffffff;" data-ral="RAL 1035 Pearl beige">RAL 1035 &nbsp;Pearl beige</button>
-            <button type="button" class="colour-row" style="background:#80643F; color:#ffffff;" data-ral="RAL 1036 Pearl gold">RAL 1036 &nbsp;Pearl gold</button>
-            <button type="button" class="colour-row" style="background:#F09200; color:#1a1a1a;" data-ral="RAL 1037 Sun yellow">RAL 1037 &nbsp;Sun yellow</button>
-            <button type="button" class="colour-row" style="background:#8A5A83; color:#ffffff;" data-ral="RAL 4001 Red lilac">RAL 4001 &nbsp;Red lilac</button>
-            <button type="button" class="colour-row" style="background:#933D50; color:#ffffff;" data-ral="RAL 4002 Red violet">RAL 4002 &nbsp;Red violet</button>
-            <button type="button" class="colour-row" style="background:#D15B8F; color:#ffffff;" data-ral="RAL 4003 Heather violet">RAL 4003 &nbsp;Heather violet</button>
-            <button type="button" class="colour-row" style="background:#691639; color:#ffffff;" data-ral="RAL 4004 Claret violet">RAL 4004 &nbsp;Claret violet</button>
-            <button type="button" class="colour-row" style="background:#83639D; color:#ffffff;" data-ral="RAL 4005 Blue lilac">RAL 4005 &nbsp;Blue lilac</button>
-            <button type="button" class="colour-row" style="background:#992572; color:#ffffff;" data-ral="RAL 4006 Traffic purple">RAL 4006 &nbsp;Traffic purple</button>
-            <button type="button" class="colour-row" style="background:#4A203B; color:#ffffff;" data-ral="RAL 4007 Purple violet">RAL 4007 &nbsp;Purple violet</button>
-            <button type="button" class="colour-row" style="background:#904684; color:#ffffff;" data-ral="RAL 4008 Signal violet">RAL 4008 &nbsp;Signal violet</button>
-            <button type="button" class="colour-row" style="background:#A38995; color:#ffffff;" data-ral="RAL 4009 Pastel violet">RAL 4009 &nbsp;Pastel violet</button>
-            <button type="button" class="colour-row" style="background:#C63678; color:#ffffff;" data-ral="RAL 4010 Telemagenta">RAL 4010 &nbsp;Telemagenta</button>
-            <button type="button" class="colour-row" style="background:#8773A1; color:#ffffff;" data-ral="RAL 4011 Pearl violet">RAL 4011 &nbsp;Pearl violet</button>
-            <button type="button" class="colour-row" style="background:#6B6880; color:#ffffff;" data-ral="RAL 4012 Pearl blackberry">RAL 4012 &nbsp;Pearl blackberry</button>
-            <button type="button" class="colour-row" style="background:#384C70; color:#ffffff;" data-ral="RAL 5000 Violet blue">RAL 5000 &nbsp;Violet blue</button>
-            <button type="button" class="colour-row" style="background:#1F4764; color:#ffffff;" data-ral="RAL 5001 Green blue">RAL 5001 &nbsp;Green blue</button>
-            <button type="button" class="colour-row" style="background:#2B2C7C; color:#ffffff;" data-ral="RAL 5002 Ultramarine blue">RAL 5002 &nbsp;Ultramarine blue</button>
-            <button type="button" class="colour-row" style="background:#2A3756; color:#ffffff;" data-ral="RAL 5003 Sapphire blue">RAL 5003 &nbsp;Sapphire blue</button>
-            <button type="button" class="colour-row" style="background:#1D1F2A; color:#ffffff;" data-ral="RAL 5004 Black blue">RAL 5004 &nbsp;Black blue</button>
-            <button type="button" class="colour-row" style="background:#154889; color:#ffffff;" data-ral="RAL 5005 Signal blue">RAL 5005 &nbsp;Signal blue</button>
-            <button type="button" class="colour-row" style="background:#41678D; color:#ffffff;" data-ral="RAL 5007 Brilliant blue">RAL 5007 &nbsp;Brilliant blue</button>
-            <button type="button" class="colour-row" style="background:#313C48; color:#ffffff;" data-ral="RAL 5008 Grey blue">RAL 5008 &nbsp;Grey blue</button>
-            <button type="button" class="colour-row" style="background:#2E5978; color:#ffffff;" data-ral="RAL 5009 Azure blue">RAL 5009 &nbsp;Azure blue</button>
-            <button type="button" class="colour-row" style="background:#13447C; color:#ffffff;" data-ral="RAL 5010 Gentian blue">RAL 5010 &nbsp;Gentian blue</button>
-            <button type="button" class="colour-row" style="background:#232C3F; color:#ffffff;" data-ral="RAL 5011 Steel blue">RAL 5011 &nbsp;Steel blue</button>
-            <button type="button" class="colour-row" style="background:#3481B8; color:#ffffff;" data-ral="RAL 5012 Light blue">RAL 5012 &nbsp;Light blue</button>
-            <button type="button" class="colour-row" style="background:#232D53; color:#ffffff;" data-ral="RAL 5013 Cobalt blue">RAL 5013 &nbsp;Cobalt blue</button>
-            <button type="button" class="colour-row" style="background:#6C7C98; color:#ffffff;" data-ral="RAL 5014 Pigeon blue">RAL 5014 &nbsp;Pigeon blue</button>
-            <button type="button" class="colour-row" style="background:#2874B2; color:#ffffff;" data-ral="RAL 5015 Sky blue">RAL 5015 &nbsp;Sky blue</button>
-            <button type="button" class="colour-row" style="background:#0E518D; color:#ffffff;" data-ral="RAL 5017 Traffic blue">RAL 5017 &nbsp;Traffic blue</button>
-            <button type="button" class="colour-row" style="background:#21888F; color:#ffffff;" data-ral="RAL 5018 Turquoise blue">RAL 5018 &nbsp;Turquoise blue</button>
-            <button type="button" class="colour-row" style="background:#1A5784; color:#ffffff;" data-ral="RAL 5019 Capri blue">RAL 5019 &nbsp;Capri blue</button>
-            <button type="button" class="colour-row" style="background:#0B4151; color:#ffffff;" data-ral="RAL 5020 Ocean blue">RAL 5020 &nbsp;Ocean blue</button>
-            <button type="button" class="colour-row" style="background:#07737A; color:#ffffff;" data-ral="RAL 5021 Water blue">RAL 5021 &nbsp;Water blue</button>
-            <button type="button" class="colour-row" style="background:#2F2A5A; color:#ffffff;" data-ral="RAL 5022 Night blue">RAL 5022 &nbsp;Night blue</button>
-            <button type="button" class="colour-row" style="background:#4D668E; color:#ffffff;" data-ral="RAL 5023 Distant blue">RAL 5023 &nbsp;Distant blue</button>
-            <button type="button" class="colour-row" style="background:#6A93B0; color:#ffffff;" data-ral="RAL 5024 Pastel blue">RAL 5024 &nbsp;Pastel blue</button>
-            <button type="button" class="colour-row" style="background:#296478; color:#ffffff;" data-ral="RAL 5025 Pearl gentian">RAL 5025 &nbsp;Pearl gentian</button>
-            <button type="button" class="colour-row" style="background:#102C54; color:#ffffff;" data-ral="RAL 5026 Pearl night blue">RAL 5026 &nbsp;Pearl night blue</button>
-            <button type="button" class="colour-row" style="background:#327662; color:#ffffff;" data-ral="RAL 6000 Patina green">RAL 6000 &nbsp;Patina green</button>
-            <button type="button" class="colour-row" style="background:#28713E; color:#ffffff;" data-ral="RAL 6001 Emerald green">RAL 6001 &nbsp;Emerald green</button>
-            <button type="button" class="colour-row" style="background:#276235; color:#ffffff;" data-ral="RAL 6002 Leaf green">RAL 6002 &nbsp;Leaf green</button>
-            <button type="button" class="colour-row" style="background:#4B573E; color:#ffffff;" data-ral="RAL 6003 Olive green">RAL 6003 &nbsp;Olive green</button>
-            <button type="button" class="colour-row" style="background:#0E4243; color:#ffffff;" data-ral="RAL 6004 Blue green">RAL 6004 &nbsp;Blue green</button>
-            <button type="button" class="colour-row" style="background:#0F4336; color:#ffffff;" data-ral="RAL 6005 Moss green">RAL 6005 &nbsp;Moss green</button>
-            <button type="button" class="colour-row" style="background:#40433B; color:#ffffff;" data-ral="RAL 6006 Grey olive">RAL 6006 &nbsp;Grey olive</button>
-            <button type="button" class="colour-row" style="background:#283424; color:#ffffff;" data-ral="RAL 6007 Bottle green">RAL 6007 &nbsp;Bottle green</button>
-            <button type="button" class="colour-row" style="background:#35382E; color:#ffffff;" data-ral="RAL 6008 Brown green">RAL 6008 &nbsp;Brown green</button>
-            <button type="button" class="colour-row" style="background:#26392F; color:#ffffff;" data-ral="RAL 6009 Fir green">RAL 6009 &nbsp;Fir green</button>
-            <button type="button" class="colour-row" style="background:#3E753B; color:#ffffff;" data-ral="RAL 6010 Grass green">RAL 6010 &nbsp;Grass green</button>
-            <button type="button" class="colour-row" style="background:#68825B; color:#ffffff;" data-ral="RAL 6011 Reseda green">RAL 6011 &nbsp;Reseda green</button>
-            <button type="button" class="colour-row" style="background:#31403D; color:#ffffff;" data-ral="RAL 6012 Black green">RAL 6012 &nbsp;Black green</button>
-            <button type="button" class="colour-row" style="background:#797C5A; color:#ffffff;" data-ral="RAL 6013 Reed green">RAL 6013 &nbsp;Reed green</button>
-            <button type="button" class="colour-row" style="background:#444337; color:#ffffff;" data-ral="RAL 6014 Yellow olive">RAL 6014 &nbsp;Yellow olive</button>
-            <button type="button" class="colour-row" style="background:#3D403A; color:#ffffff;" data-ral="RAL 6015 Black olive">RAL 6015 &nbsp;Black olive</button>
-            <button type="button" class="colour-row" style="background:#026A52; color:#ffffff;" data-ral="RAL 6016 Turquoise green">RAL 6016 &nbsp;Turquoise green</button>
-            <button type="button" class="colour-row" style="background:#468641; color:#ffffff;" data-ral="RAL 6017 May green">RAL 6017 &nbsp;May green</button>
-            <button type="button" class="colour-row" style="background:#48A43F; color:#ffffff;" data-ral="RAL 6018 Yellow green">RAL 6018 &nbsp;Yellow green</button>
-            <button type="button" class="colour-row" style="background:#B7D9B1; color:#1a1a1a;" data-ral="RAL 6019 Pastel green">RAL 6019 &nbsp;Pastel green</button>
-            <button type="button" class="colour-row" style="background:#354733; color:#ffffff;" data-ral="RAL 6020 Chromium green">RAL 6020 &nbsp;Chromium green</button>
-            <button type="button" class="colour-row" style="background:#86A47C; color:#1a1a1a;" data-ral="RAL 6021 Pale green">RAL 6021 &nbsp;Pale green</button>
-            <button type="button" class="colour-row" style="background:#3E3C32; color:#ffffff;" data-ral="RAL 6022 Brown olive">RAL 6022 &nbsp;Brown olive</button>
-            <button type="button" class="colour-row" style="background:#008754; color:#ffffff;" data-ral="RAL 6024 Traffic green">RAL 6024 &nbsp;Traffic green</button>
-            <button type="button" class="colour-row" style="background:#53753C; color:#ffffff;" data-ral="RAL 6025 Fern green">RAL 6025 &nbsp;Fern green</button>
-            <button type="button" class="colour-row" style="background:#005D52; color:#ffffff;" data-ral="RAL 6026 Opal green">RAL 6026 &nbsp;Opal green</button>
-            <button type="button" class="colour-row" style="background:#81C0BB; color:#1a1a1a;" data-ral="RAL 6027 Light green">RAL 6027 &nbsp;Light green</button>
-            <button type="button" class="colour-row" style="background:#2D5546; color:#ffffff;" data-ral="RAL 6028 Pine green">RAL 6028 &nbsp;Pine green</button>
-            <button type="button" class="colour-row" style="background:#007243; color:#ffffff;" data-ral="RAL 6029 Mint green">RAL 6029 &nbsp;Mint green</button>
-            <button type="button" class="colour-row" style="background:#495746; color:#ffffff;" data-ral="RAL 6031 Bronze green">RAL 6031 &nbsp;Bronze green</button>
-            <button type="button" class="colour-row" style="background:#0F8558; color:#ffffff;" data-ral="RAL 6032 Signal green">RAL 6032 &nbsp;Signal green</button>
-            <button type="button" class="colour-row" style="background:#478A84; color:#ffffff;" data-ral="RAL 6033 Mint turquoise">RAL 6033 &nbsp;Mint turquoise</button>
-            <button type="button" class="colour-row" style="background:#7FB0B2; color:#1a1a1a;" data-ral="RAL 6034 Pastel turquoise">RAL 6034 &nbsp;Pastel turquoise</button>
-            <button type="button" class="colour-row" style="background:#1B542C; color:#ffffff;" data-ral="RAL 6035 Pearl green">RAL 6035 &nbsp;Pearl green</button>
-            <button type="button" class="colour-row" style="background:#005D4C; color:#ffffff;" data-ral="RAL 6036 Pearl opal green">RAL 6036 &nbsp;Pearl opal green</button>
-            <button type="button" class="colour-row" style="background:#25E712; color:#ffffff;" data-ral="RAL 6037 Pure green">RAL 6037 &nbsp;Pure green</button>
-            <button type="button" class="colour-row" style="background:#00F700; color:#ffffff;" data-ral="RAL 6038 Luminous green">RAL 6038 &nbsp;Luminous green</button>
-            <button type="button" class="colour-row" style="background:#B3C43E; color:#1a1a1a;" data-ral="RAL 6039 Fibrous green">RAL 6039 &nbsp;Fibrous green</button>
-            <button type="button" class="colour-row" style="background:#7E8B92; color:#ffffff;" data-ral="RAL 7000 Squirrel grey">RAL 7000 &nbsp;Squirrel grey</button>
-            <button type="button" class="colour-row" style="background:#8F999F; color:#1a1a1a;" data-ral="RAL 7001 Silver grey">RAL 7001 &nbsp;Silver grey</button>
-            <button type="button" class="colour-row" style="background:#817F68; color:#ffffff;" data-ral="RAL 7002 Olive grey">RAL 7002 &nbsp;Olive grey</button>
-            <button type="button" class="colour-row" style="background:#7A7B6D; color:#ffffff;" data-ral="RAL 7003 Moss grey">RAL 7003 &nbsp;Moss grey</button>
-            <button type="button" class="colour-row" style="background:#9EA0A1; color:#1a1a1a;" data-ral="RAL 7004 Signal grey">RAL 7004 &nbsp;Signal grey</button>
-            <button type="button" class="colour-row" style="background:#6B716F; color:#ffffff;" data-ral="RAL 7005 Mouse grey">RAL 7005 &nbsp;Mouse grey</button>
-            <button type="button" class="colour-row" style="background:#756F61; color:#ffffff;" data-ral="RAL 7006 Beige grey">RAL 7006 &nbsp;Beige grey</button>
-            <button type="button" class="colour-row" style="background:#746643; color:#ffffff;" data-ral="RAL 7008 Khaki grey">RAL 7008 &nbsp;Khaki grey</button>
-            <button type="button" class="colour-row" style="background:#5B6259; color:#ffffff;" data-ral="RAL 7009 Green grey">RAL 7009 &nbsp;Green grey</button>
-            <button type="button" class="colour-row" style="background:#575D57; color:#ffffff;" data-ral="RAL 7010 Tarpaulin grey">RAL 7010 &nbsp;Tarpaulin grey</button>
-            <button type="button" class="colour-row" style="background:#555D61; color:#ffffff;" data-ral="RAL 7011 Iron grey">RAL 7011 &nbsp;Iron grey</button>
-            <button type="button" class="colour-row" style="background:#596163; color:#ffffff;" data-ral="RAL 7012 Basalt grey">RAL 7012 &nbsp;Basalt grey</button>
-            <button type="button" class="colour-row" style="background:#555548; color:#ffffff;" data-ral="RAL 7013 Brown grey or NATO olive">RAL 7013 &nbsp;Brown grey or NATO olive</button>
-            <button type="button" class="colour-row" style="background:#51565C; color:#ffffff;" data-ral="RAL 7015 Slate grey">RAL 7015 &nbsp;Slate grey</button>
-            <button type="button" class="colour-row" style="background:#373F43; color:#ffffff;" data-ral="RAL 7016 Anthracite grey">RAL 7016 &nbsp;Anthracite grey</button>
-            <button type="button" class="colour-row" style="background:#2E3234; color:#ffffff;" data-ral="RAL 7021 Black grey">RAL 7021 &nbsp;Black grey</button>
-            <button type="button" class="colour-row" style="background:#4B4D46; color:#ffffff;" data-ral="RAL 7022 Umbra grey">RAL 7022 &nbsp;Umbra grey</button>
-            <button type="button" class="colour-row" style="background:#818479; color:#ffffff;" data-ral="RAL 7023 Concrete grey">RAL 7023 &nbsp;Concrete grey</button>
-            <button type="button" class="colour-row" style="background:#474A50; color:#ffffff;" data-ral="RAL 7024 Graphite grey">RAL 7024 &nbsp;Graphite grey</button>
-            <button type="button" class="colour-row" style="background:#374447; color:#ffffff;" data-ral="RAL 7026 Granite grey">RAL 7026 &nbsp;Granite grey</button>
-            <button type="button" class="colour-row" style="background:#939388; color:#ffffff;" data-ral="RAL 7030 Stone grey">RAL 7030 &nbsp;Stone grey</button>
-            <button type="button" class="colour-row" style="background:#5D6970; color:#ffffff;" data-ral="RAL 7031 Blue grey">RAL 7031 &nbsp;Blue grey</button>
-            <button type="button" class="colour-row" style="background:#B9B9A8; color:#1a1a1a;" data-ral="RAL 7032 Pebble grey">RAL 7032 &nbsp;Pebble grey</button>
-            <button type="button" class="colour-row" style="background:#818979; color:#ffffff;" data-ral="RAL 7033 Cement grey">RAL 7033 &nbsp;Cement grey</button>
-            <button type="button" class="colour-row" style="background:#939176; color:#ffffff;" data-ral="RAL 7034 Yellow grey">RAL 7034 &nbsp;Yellow grey</button>
-            <button type="button" class="colour-row" style="background:#CBD0CC; color:#1a1a1a;" data-ral="RAL 7035 Light grey">RAL 7035 &nbsp;Light grey</button>
-            <button type="button" class="colour-row" style="background:#9A9697; color:#1a1a1a;" data-ral="RAL 7036 Platinum grey">RAL 7036 &nbsp;Platinum grey</button>
-            <button type="button" class="colour-row" style="background:#7C7F7E; color:#ffffff;" data-ral="RAL 7037 Dusty grey">RAL 7037 &nbsp;Dusty grey</button>
-            <button type="button" class="colour-row" style="background:#B4B8B0; color:#1a1a1a;" data-ral="RAL 7038 Agate grey">RAL 7038 &nbsp;Agate grey</button>
-            <button type="button" class="colour-row" style="background:#6B695F; color:#ffffff;" data-ral="RAL 7039 Quartz grey">RAL 7039 &nbsp;Quartz grey</button>
-            <button type="button" class="colour-row" style="background:#9DA3A6; color:#1a1a1a;" data-ral="RAL 7040 Window grey">RAL 7040 &nbsp;Window grey</button>
-            <button type="button" class="colour-row" style="background:#8F9695; color:#ffffff;" data-ral="RAL 7042 Traffic grey A">RAL 7042 &nbsp;Traffic grey A</button>
-            <button type="button" class="colour-row" style="background:#4E5451; color:#ffffff;" data-ral="RAL 7043 Traffic grey B">RAL 7043 &nbsp;Traffic grey B</button>
-            <button type="button" class="colour-row" style="background:#BDBDB2; color:#1a1a1a;" data-ral="RAL 7044 Silk grey">RAL 7044 &nbsp;Silk grey</button>
-            <button type="button" class="colour-row" style="background:#888175; color:#ffffff;" data-ral="RAL 7048 Pearl mouse grey">RAL 7048 &nbsp;Pearl mouse grey</button>
-            <button type="button" class="colour-row" style="background:#887142; color:#ffffff;" data-ral="RAL 8000 Green brown">RAL 8000 &nbsp;Green brown</button>
-            <button type="button" class="colour-row" style="background:#9C6B30; color:#ffffff;" data-ral="RAL 8001 Ochre brown">RAL 8001 &nbsp;Ochre brown</button>
-            <button type="button" class="colour-row" style="background:#7B5141; color:#ffffff;" data-ral="RAL 8002 Signal brown">RAL 8002 &nbsp;Signal brown</button>
-            <button type="button" class="colour-row" style="background:#80542F; color:#ffffff;" data-ral="RAL 8003 Clay brown">RAL 8003 &nbsp;Clay brown</button>
-            <button type="button" class="colour-row" style="background:#8F4E35; color:#ffffff;" data-ral="RAL 8004 Copper brown">RAL 8004 &nbsp;Copper brown</button>
-            <button type="button" class="colour-row" style="background:#6F4A2F; color:#ffffff;" data-ral="RAL 8007 Fawn brown">RAL 8007 &nbsp;Fawn brown</button>
-            <button type="button" class="colour-row" style="background:#6F4F28; color:#ffffff;" data-ral="RAL 8008 Olive brown">RAL 8008 &nbsp;Olive brown</button>
-            <button type="button" class="colour-row" style="background:#5A3A29; color:#ffffff;" data-ral="RAL 8011 Nut brown">RAL 8011 &nbsp;Nut brown</button>
-            <button type="button" class="colour-row" style="background:#673831; color:#ffffff;" data-ral="RAL 8012 Red brown">RAL 8012 &nbsp;Red brown</button>
-            <button type="button" class="colour-row" style="background:#49392D; color:#ffffff;" data-ral="RAL 8014 Sepia brown">RAL 8014 &nbsp;Sepia brown</button>
-            <button type="button" class="colour-row" style="background:#633A34; color:#ffffff;" data-ral="RAL 8015 Chestnut brown">RAL 8015 &nbsp;Chestnut brown</button>
-            <button type="button" class="colour-row" style="background:#4C2F26; color:#ffffff;" data-ral="RAL 8016 Mahogany brown">RAL 8016 &nbsp;Mahogany brown</button>
-            <button type="button" class="colour-row" style="background:#44322D; color:#ffffff;" data-ral="RAL 8017 Chocolate brown">RAL 8017 &nbsp;Chocolate brown</button>
-            <button type="button" class="colour-row" style="background:#3F3A3A; color:#ffffff;" data-ral="RAL 8019 Grey brown">RAL 8019 &nbsp;Grey brown</button>
-            <button type="button" class="colour-row" style="background:#211F20; color:#ffffff;" data-ral="RAL 8022 Black brown">RAL 8022 &nbsp;Black brown</button>
-            <button type="button" class="colour-row" style="background:#A65E2F; color:#ffffff;" data-ral="RAL 8023 Orange brown">RAL 8023 &nbsp;Orange brown</button>
-            <button type="button" class="colour-row" style="background:#79553C; color:#ffffff;" data-ral="RAL 8024 Beige brown">RAL 8024 &nbsp;Beige brown</button>
-            <button type="button" class="colour-row" style="background:#755C49; color:#ffffff;" data-ral="RAL 8025 Pale brown">RAL 8025 &nbsp;Pale brown</button>
-            <button type="button" class="colour-row" style="background:#4E3B2B; color:#ffffff;" data-ral="RAL 8028 Terra brown">RAL 8028 &nbsp;Terra brown</button>
-            <button type="button" class="colour-row" style="background:#773C27; color:#ffffff;" data-ral="RAL 8029 Pearl copper">RAL 8029 &nbsp;Pearl copper</button>
-            <button type="button" class="colour-row" style="background:#EFEBDC; color:#1a1a1a;" data-ral="RAL 9001 Cream">RAL 9001 &nbsp;Cream</button>
-            <button type="button" class="colour-row" style="background:#DDDED4; color:#1a1a1a;" data-ral="RAL 9002 Grey white">RAL 9002 &nbsp;Grey white</button>
-            <button type="button" class="colour-row" style="background:#FFFFFF; color:#1a1a1a;" data-ral="RAL 9003 Signal white">RAL 9003 &nbsp;Signal white</button>
-            <button type="button" class="colour-row" style="background:#2E3032; color:#ffffff;" data-ral="RAL 9004 Signal black">RAL 9004 &nbsp;Signal black</button>
-            <button type="button" class="colour-row" style="background:#131516; color:#ffffff;" data-ral="RAL 9005 Jet black">RAL 9005 &nbsp;Jet black</button>
-            <button type="button" class="colour-row" style="background:#A5A8A6; color:#1a1a1a;" data-ral="RAL 9006 White aluminium">RAL 9006 &nbsp;White aluminium</button>
-            <button type="button" class="colour-row" style="background:#8F8F8C; color:#ffffff;" data-ral="RAL 9007 Grey aluminium">RAL 9007 &nbsp;Grey aluminium</button>
-            <button type="button" class="colour-row" style="background:#F7F9EF; color:#1a1a1a;" data-ral="RAL 9010 Pure white">RAL 9010 &nbsp;Pure white</button>
-            <button type="button" class="colour-row" style="background:#1C1C1C; color:#ffffff;" data-ral="RAL 9011 Graphite black">RAL 9011 &nbsp;Graphite black</button>
-            <button type="button" class="colour-row" style="background:#FFFDE6; color:#1a1a1a;" data-ral="RAL 9012 Clean room white">RAL 9012 &nbsp;Clean room white</button>
-            <button type="button" class="colour-row" style="background:#F7FBF5; color:#1a1a1a;" data-ral="RAL 9016 Traffic white">RAL 9016 &nbsp;Traffic white</button>
-            <button type="button" class="colour-row" style="background:#2A2D2F; color:#ffffff;" data-ral="RAL 9017 Traffic black">RAL 9017 &nbsp;Traffic black</button>
-            <button type="button" class="colour-row" style="background:#CFD3CD; color:#1a1a1a;" data-ral="RAL 9018 Papyrus white">RAL 9018 &nbsp;Papyrus white</button>
-            <button type="button" class="colour-row" style="background:#858583; color:#ffffff;" data-ral="RAL 9022 Pearl light grey">RAL 9022 &nbsp;Pearl light grey</button>
-            <button type="button" class="colour-row" style="background:#7E8182; color:#ffffff;" data-ral="RAL 9023 Pearl dark grey">RAL 9023 &nbsp;Pearl dark grey</button>
-        </div>
-        <p class="colours-note">Screen colours are a guide only. Ask us for a real sample chip before you decide.</p>
-    </section>
-
     <section id="quote">
         <h2>Get a Quote Fast</h2>
         <div class="quick-quote">
@@ -501,6 +284,224 @@
         <p>20+ Years Serving Southern Ontario</p>
     </footer>
     </main>
+    <aside class="colour-strip" id="colourStrip" aria-label="RAL colour options">
+        <div class="colour-strip-inner" id="colourStripInner">
+            <button type="button" class="ral-bar" style="background:#AB2524; color:#ffffff;" data-ral="RAL 3000 Flame red" title="Flame red"><span>RAL 3000</span></button>
+            <button type="button" class="ral-bar" style="background:#A02128; color:#ffffff;" data-ral="RAL 3001 Signal red" title="Signal red"><span>RAL 3001</span></button>
+            <button type="button" class="ral-bar" style="background:#A1232B; color:#ffffff;" data-ral="RAL 3002 Carmine red" title="Carmine red"><span>RAL 3002</span></button>
+            <button type="button" class="ral-bar" style="background:#8D1D2C; color:#ffffff;" data-ral="RAL 3003 Ruby red" title="Ruby red"><span>RAL 3003</span></button>
+            <button type="button" class="ral-bar" style="background:#701F29; color:#ffffff;" data-ral="RAL 3004 Purple red" title="Purple red"><span>RAL 3004</span></button>
+            <button type="button" class="ral-bar" style="background:#5E2028; color:#ffffff;" data-ral="RAL 3005 Wine red" title="Wine red"><span>RAL 3005</span></button>
+            <button type="button" class="ral-bar" style="background:#402225; color:#ffffff;" data-ral="RAL 3007 Black red" title="Black red"><span>RAL 3007</span></button>
+            <button type="button" class="ral-bar" style="background:#703731; color:#ffffff;" data-ral="RAL 3009 Oxide red" title="Oxide red"><span>RAL 3009</span></button>
+            <button type="button" class="ral-bar" style="background:#7E292C; color:#ffffff;" data-ral="RAL 3011 Brown red" title="Brown red"><span>RAL 3011</span></button>
+            <button type="button" class="ral-bar" style="background:#CB8D73; color:#1a1a1a;" data-ral="RAL 3012 Beige red" title="Beige red"><span>RAL 3012</span></button>
+            <button type="button" class="ral-bar" style="background:#9C322E; color:#ffffff;" data-ral="RAL 3013 Tomato red" title="Tomato red"><span>RAL 3013</span></button>
+            <button type="button" class="ral-bar" style="background:#D47479; color:#ffffff;" data-ral="RAL 3014 Antique pink" title="Antique pink"><span>RAL 3014</span></button>
+            <button type="button" class="ral-bar" style="background:#E1A6AD; color:#1a1a1a;" data-ral="RAL 3015 Light pink" title="Light pink"><span>RAL 3015</span></button>
+            <button type="button" class="ral-bar" style="background:#AC4034; color:#ffffff;" data-ral="RAL 3016 Coral red" title="Coral red"><span>RAL 3016</span></button>
+            <button type="button" class="ral-bar" style="background:#D3545F; color:#ffffff;" data-ral="RAL 3017 Rose" title="Rose"><span>RAL 3017</span></button>
+            <button type="button" class="ral-bar" style="background:#D14152; color:#ffffff;" data-ral="RAL 3018 Strawberry red" title="Strawberry red"><span>RAL 3018</span></button>
+            <button type="button" class="ral-bar" style="background:#C1121C; color:#ffffff;" data-ral="RAL 3020 Traffic red" title="Traffic red"><span>RAL 3020</span></button>
+            <button type="button" class="ral-bar" style="background:#D56D56; color:#ffffff;" data-ral="RAL 3022 Salmon pink" title="Salmon pink"><span>RAL 3022</span></button>
+            <button type="button" class="ral-bar" style="background:#F70000; color:#ffffff;" data-ral="RAL 3024 Luminous red" title="Luminous red"><span>RAL 3024</span></button>
+            <button type="button" class="ral-bar" style="background:#FF0000; color:#ffffff;" data-ral="RAL 3026 Luminous bright red" title="Luminous bright red"><span>RAL 3026</span></button>
+            <button type="button" class="ral-bar" style="background:#B42041; color:#ffffff;" data-ral="RAL 3027 Raspberry red" title="Raspberry red"><span>RAL 3027</span></button>
+            <button type="button" class="ral-bar" style="background:#E72512; color:#ffffff;" data-ral="RAL 3028 Pure red" title="Pure red"><span>RAL 3028</span></button>
+            <button type="button" class="ral-bar" style="background:#AC323B; color:#ffffff;" data-ral="RAL 3031 Orient red" title="Orient red"><span>RAL 3031</span></button>
+            <button type="button" class="ral-bar" style="background:#711521; color:#ffffff;" data-ral="RAL 3032 Pearl ruby red" title="Pearl ruby red"><span>RAL 3032</span></button>
+            <button type="button" class="ral-bar" style="background:#B24C43; color:#ffffff;" data-ral="RAL 3033 Pearl pink" title="Pearl pink"><span>RAL 3033</span></button>
+            <button type="button" class="ral-bar" style="background:#DD7907; color:#ffffff;" data-ral="RAL 2000 Yellow orange" title="Yellow orange"><span>RAL 2000</span></button>
+            <button type="button" class="ral-bar" style="background:#BE4E20; color:#ffffff;" data-ral="RAL 2001 Red orange" title="Red orange"><span>RAL 2001</span></button>
+            <button type="button" class="ral-bar" style="background:#C63927; color:#ffffff;" data-ral="RAL 2002 Blood orange" title="Blood orange"><span>RAL 2002</span></button>
+            <button type="button" class="ral-bar" style="background:#FA842B; color:#1a1a1a;" data-ral="RAL 2003 Pastel orange" title="Pastel orange"><span>RAL 2003</span></button>
+            <button type="button" class="ral-bar" style="background:#E75B12; color:#ffffff;" data-ral="RAL 2004 Pure orange" title="Pure orange"><span>RAL 2004</span></button>
+            <button type="button" class="ral-bar" style="background:#FF2300; color:#ffffff;" data-ral="RAL 2005 Luminous orange" title="Luminous orange"><span>RAL 2005</span></button>
+            <button type="button" class="ral-bar" style="background:#FFA421; color:#1a1a1a;" data-ral="RAL 2007 Luminous bright orange" title="Luminous bright orange"><span>RAL 2007</span></button>
+            <button type="button" class="ral-bar" style="background:#F3752C; color:#ffffff;" data-ral="RAL 2008 Bright red orange" title="Bright red orange"><span>RAL 2008</span></button>
+            <button type="button" class="ral-bar" style="background:#E15501; color:#ffffff;" data-ral="RAL 2009 Traffic orange" title="Traffic orange"><span>RAL 2009</span></button>
+            <button type="button" class="ral-bar" style="background:#D4652F; color:#ffffff;" data-ral="RAL 2010 Signal orange" title="Signal orange"><span>RAL 2010</span></button>
+            <button type="button" class="ral-bar" style="background:#EC7C25; color:#ffffff;" data-ral="RAL 2011 Deep orange" title="Deep orange"><span>RAL 2011</span></button>
+            <button type="button" class="ral-bar" style="background:#DB6A50; color:#ffffff;" data-ral="RAL 2012 Salmon orange" title="Salmon orange"><span>RAL 2012</span></button>
+            <button type="button" class="ral-bar" style="background:#954527; color:#ffffff;" data-ral="RAL 2013 Pearl orange" title="Pearl orange"><span>RAL 2013</span></button>
+            <button type="button" class="ral-bar" style="background:#FA4402; color:#ffffff;" data-ral="RAL 2017 RAL orange" title="RAL orange"><span>RAL 2017</span></button>
+            <button type="button" class="ral-bar" style="background:#CDBA88; color:#1a1a1a;" data-ral="RAL 1000 Green beige" title="Green beige"><span>RAL 1000</span></button>
+            <button type="button" class="ral-bar" style="background:#D0B084; color:#1a1a1a;" data-ral="RAL 1001 Beige" title="Beige"><span>RAL 1001</span></button>
+            <button type="button" class="ral-bar" style="background:#D2AA6D; color:#1a1a1a;" data-ral="RAL 1002 Sand yellow" title="Sand yellow"><span>RAL 1002</span></button>
+            <button type="button" class="ral-bar" style="background:#F9A800; color:#1a1a1a;" data-ral="RAL 1003 Signal yellow" title="Signal yellow"><span>RAL 1003</span></button>
+            <button type="button" class="ral-bar" style="background:#E49E00; color:#1a1a1a;" data-ral="RAL 1004 Golden yellow" title="Golden yellow"><span>RAL 1004</span></button>
+            <button type="button" class="ral-bar" style="background:#CB8E00; color:#ffffff;" data-ral="RAL 1005 Honey yellow" title="Honey yellow"><span>RAL 1005</span></button>
+            <button type="button" class="ral-bar" style="background:#E29000; color:#1a1a1a;" data-ral="RAL 1006 Maize yellow" title="Maize yellow"><span>RAL 1006</span></button>
+            <button type="button" class="ral-bar" style="background:#E88C00; color:#1a1a1a;" data-ral="RAL 1007 Daffodil yellow" title="Daffodil yellow"><span>RAL 1007</span></button>
+            <button type="button" class="ral-bar" style="background:#AF804F; color:#ffffff;" data-ral="RAL 1011 Brown beige" title="Brown beige"><span>RAL 1011</span></button>
+            <button type="button" class="ral-bar" style="background:#DDAF27; color:#1a1a1a;" data-ral="RAL 1012 Lemon yellow" title="Lemon yellow"><span>RAL 1012</span></button>
+            <button type="button" class="ral-bar" style="background:#E3D9C6; color:#1a1a1a;" data-ral="RAL 1013 Oyster white" title="Oyster white"><span>RAL 1013</span></button>
+            <button type="button" class="ral-bar" style="background:#DDC49A; color:#1a1a1a;" data-ral="RAL 1014 Ivory" title="Ivory"><span>RAL 1014</span></button>
+            <button type="button" class="ral-bar" style="background:#E6D2B5; color:#1a1a1a;" data-ral="RAL 1015 Light ivory" title="Light ivory"><span>RAL 1015</span></button>
+            <button type="button" class="ral-bar" style="background:#F1DD38; color:#1a1a1a;" data-ral="RAL 1016 Sulfur yellow" title="Sulfur yellow"><span>RAL 1016</span></button>
+            <button type="button" class="ral-bar" style="background:#F6A950; color:#1a1a1a;" data-ral="RAL 1017 Saffron yellow" title="Saffron yellow"><span>RAL 1017</span></button>
+            <button type="button" class="ral-bar" style="background:#FACA30; color:#1a1a1a;" data-ral="RAL 1018 Zinc yellow" title="Zinc yellow"><span>RAL 1018</span></button>
+            <button type="button" class="ral-bar" style="background:#A48F7A; color:#ffffff;" data-ral="RAL 1019 Grey beige" title="Grey beige"><span>RAL 1019</span></button>
+            <button type="button" class="ral-bar" style="background:#A08F65; color:#ffffff;" data-ral="RAL 1020 Olive yellow" title="Olive yellow"><span>RAL 1020</span></button>
+            <button type="button" class="ral-bar" style="background:#F6B600; color:#1a1a1a;" data-ral="RAL 1021 Colza yellow" title="Colza yellow"><span>RAL 1021</span></button>
+            <button type="button" class="ral-bar" style="background:#F7B500; color:#1a1a1a;" data-ral="RAL 1023 Traffic yellow" title="Traffic yellow"><span>RAL 1023</span></button>
+            <button type="button" class="ral-bar" style="background:#BA8F4C; color:#ffffff;" data-ral="RAL 1024 Ochre yellow" title="Ochre yellow"><span>RAL 1024</span></button>
+            <button type="button" class="ral-bar" style="background:#FFFF00; color:#1a1a1a;" data-ral="RAL 1026 Luminous yellow" title="Luminous yellow"><span>RAL 1026</span></button>
+            <button type="button" class="ral-bar" style="background:#A77F0E; color:#ffffff;" data-ral="RAL 1027 Curry" title="Curry"><span>RAL 1027</span></button>
+            <button type="button" class="ral-bar" style="background:#FF9B00; color:#1a1a1a;" data-ral="RAL 1028 Melon yellow" title="Melon yellow"><span>RAL 1028</span></button>
+            <button type="button" class="ral-bar" style="background:#E2A300; color:#1a1a1a;" data-ral="RAL 1032 Broom yellow" title="Broom yellow"><span>RAL 1032</span></button>
+            <button type="button" class="ral-bar" style="background:#F99A1C; color:#1a1a1a;" data-ral="RAL 1033 Dahlia yellow" title="Dahlia yellow"><span>RAL 1033</span></button>
+            <button type="button" class="ral-bar" style="background:#EB9C52; color:#1a1a1a;" data-ral="RAL 1034 Pastel yellow" title="Pastel yellow"><span>RAL 1034</span></button>
+            <button type="button" class="ral-bar" style="background:#908370; color:#ffffff;" data-ral="RAL 1035 Pearl beige" title="Pearl beige"><span>RAL 1035</span></button>
+            <button type="button" class="ral-bar" style="background:#80643F; color:#ffffff;" data-ral="RAL 1036 Pearl gold" title="Pearl gold"><span>RAL 1036</span></button>
+            <button type="button" class="ral-bar" style="background:#F09200; color:#1a1a1a;" data-ral="RAL 1037 Sun yellow" title="Sun yellow"><span>RAL 1037</span></button>
+            <button type="button" class="ral-bar" style="background:#8A5A83; color:#ffffff;" data-ral="RAL 4001 Red lilac" title="Red lilac"><span>RAL 4001</span></button>
+            <button type="button" class="ral-bar" style="background:#933D50; color:#ffffff;" data-ral="RAL 4002 Red violet" title="Red violet"><span>RAL 4002</span></button>
+            <button type="button" class="ral-bar" style="background:#D15B8F; color:#ffffff;" data-ral="RAL 4003 Heather violet" title="Heather violet"><span>RAL 4003</span></button>
+            <button type="button" class="ral-bar" style="background:#691639; color:#ffffff;" data-ral="RAL 4004 Claret violet" title="Claret violet"><span>RAL 4004</span></button>
+            <button type="button" class="ral-bar" style="background:#83639D; color:#ffffff;" data-ral="RAL 4005 Blue lilac" title="Blue lilac"><span>RAL 4005</span></button>
+            <button type="button" class="ral-bar" style="background:#992572; color:#ffffff;" data-ral="RAL 4006 Traffic purple" title="Traffic purple"><span>RAL 4006</span></button>
+            <button type="button" class="ral-bar" style="background:#4A203B; color:#ffffff;" data-ral="RAL 4007 Purple violet" title="Purple violet"><span>RAL 4007</span></button>
+            <button type="button" class="ral-bar" style="background:#904684; color:#ffffff;" data-ral="RAL 4008 Signal violet" title="Signal violet"><span>RAL 4008</span></button>
+            <button type="button" class="ral-bar" style="background:#A38995; color:#ffffff;" data-ral="RAL 4009 Pastel violet" title="Pastel violet"><span>RAL 4009</span></button>
+            <button type="button" class="ral-bar" style="background:#C63678; color:#ffffff;" data-ral="RAL 4010 Telemagenta" title="Telemagenta"><span>RAL 4010</span></button>
+            <button type="button" class="ral-bar" style="background:#8773A1; color:#ffffff;" data-ral="RAL 4011 Pearl violet" title="Pearl violet"><span>RAL 4011</span></button>
+            <button type="button" class="ral-bar" style="background:#6B6880; color:#ffffff;" data-ral="RAL 4012 Pearl blackberry" title="Pearl blackberry"><span>RAL 4012</span></button>
+            <button type="button" class="ral-bar" style="background:#384C70; color:#ffffff;" data-ral="RAL 5000 Violet blue" title="Violet blue"><span>RAL 5000</span></button>
+            <button type="button" class="ral-bar" style="background:#1F4764; color:#ffffff;" data-ral="RAL 5001 Green blue" title="Green blue"><span>RAL 5001</span></button>
+            <button type="button" class="ral-bar" style="background:#2B2C7C; color:#ffffff;" data-ral="RAL 5002 Ultramarine blue" title="Ultramarine blue"><span>RAL 5002</span></button>
+            <button type="button" class="ral-bar" style="background:#2A3756; color:#ffffff;" data-ral="RAL 5003 Sapphire blue" title="Sapphire blue"><span>RAL 5003</span></button>
+            <button type="button" class="ral-bar" style="background:#1D1F2A; color:#ffffff;" data-ral="RAL 5004 Black blue" title="Black blue"><span>RAL 5004</span></button>
+            <button type="button" class="ral-bar" style="background:#154889; color:#ffffff;" data-ral="RAL 5005 Signal blue" title="Signal blue"><span>RAL 5005</span></button>
+            <button type="button" class="ral-bar" style="background:#41678D; color:#ffffff;" data-ral="RAL 5007 Brilliant blue" title="Brilliant blue"><span>RAL 5007</span></button>
+            <button type="button" class="ral-bar" style="background:#313C48; color:#ffffff;" data-ral="RAL 5008 Grey blue" title="Grey blue"><span>RAL 5008</span></button>
+            <button type="button" class="ral-bar" style="background:#2E5978; color:#ffffff;" data-ral="RAL 5009 Azure blue" title="Azure blue"><span>RAL 5009</span></button>
+            <button type="button" class="ral-bar" style="background:#13447C; color:#ffffff;" data-ral="RAL 5010 Gentian blue" title="Gentian blue"><span>RAL 5010</span></button>
+            <button type="button" class="ral-bar" style="background:#232C3F; color:#ffffff;" data-ral="RAL 5011 Steel blue" title="Steel blue"><span>RAL 5011</span></button>
+            <button type="button" class="ral-bar" style="background:#3481B8; color:#ffffff;" data-ral="RAL 5012 Light blue" title="Light blue"><span>RAL 5012</span></button>
+            <button type="button" class="ral-bar" style="background:#232D53; color:#ffffff;" data-ral="RAL 5013 Cobalt blue" title="Cobalt blue"><span>RAL 5013</span></button>
+            <button type="button" class="ral-bar" style="background:#6C7C98; color:#ffffff;" data-ral="RAL 5014 Pigeon blue" title="Pigeon blue"><span>RAL 5014</span></button>
+            <button type="button" class="ral-bar" style="background:#2874B2; color:#ffffff;" data-ral="RAL 5015 Sky blue" title="Sky blue"><span>RAL 5015</span></button>
+            <button type="button" class="ral-bar" style="background:#0E518D; color:#ffffff;" data-ral="RAL 5017 Traffic blue" title="Traffic blue"><span>RAL 5017</span></button>
+            <button type="button" class="ral-bar" style="background:#21888F; color:#ffffff;" data-ral="RAL 5018 Turquoise blue" title="Turquoise blue"><span>RAL 5018</span></button>
+            <button type="button" class="ral-bar" style="background:#1A5784; color:#ffffff;" data-ral="RAL 5019 Capri blue" title="Capri blue"><span>RAL 5019</span></button>
+            <button type="button" class="ral-bar" style="background:#0B4151; color:#ffffff;" data-ral="RAL 5020 Ocean blue" title="Ocean blue"><span>RAL 5020</span></button>
+            <button type="button" class="ral-bar" style="background:#07737A; color:#ffffff;" data-ral="RAL 5021 Water blue" title="Water blue"><span>RAL 5021</span></button>
+            <button type="button" class="ral-bar" style="background:#2F2A5A; color:#ffffff;" data-ral="RAL 5022 Night blue" title="Night blue"><span>RAL 5022</span></button>
+            <button type="button" class="ral-bar" style="background:#4D668E; color:#ffffff;" data-ral="RAL 5023 Distant blue" title="Distant blue"><span>RAL 5023</span></button>
+            <button type="button" class="ral-bar" style="background:#6A93B0; color:#ffffff;" data-ral="RAL 5024 Pastel blue" title="Pastel blue"><span>RAL 5024</span></button>
+            <button type="button" class="ral-bar" style="background:#296478; color:#ffffff;" data-ral="RAL 5025 Pearl gentian" title="Pearl gentian"><span>RAL 5025</span></button>
+            <button type="button" class="ral-bar" style="background:#102C54; color:#ffffff;" data-ral="RAL 5026 Pearl night blue" title="Pearl night blue"><span>RAL 5026</span></button>
+            <button type="button" class="ral-bar" style="background:#327662; color:#ffffff;" data-ral="RAL 6000 Patina green" title="Patina green"><span>RAL 6000</span></button>
+            <button type="button" class="ral-bar" style="background:#28713E; color:#ffffff;" data-ral="RAL 6001 Emerald green" title="Emerald green"><span>RAL 6001</span></button>
+            <button type="button" class="ral-bar" style="background:#276235; color:#ffffff;" data-ral="RAL 6002 Leaf green" title="Leaf green"><span>RAL 6002</span></button>
+            <button type="button" class="ral-bar" style="background:#4B573E; color:#ffffff;" data-ral="RAL 6003 Olive green" title="Olive green"><span>RAL 6003</span></button>
+            <button type="button" class="ral-bar" style="background:#0E4243; color:#ffffff;" data-ral="RAL 6004 Blue green" title="Blue green"><span>RAL 6004</span></button>
+            <button type="button" class="ral-bar" style="background:#0F4336; color:#ffffff;" data-ral="RAL 6005 Moss green" title="Moss green"><span>RAL 6005</span></button>
+            <button type="button" class="ral-bar" style="background:#40433B; color:#ffffff;" data-ral="RAL 6006 Grey olive" title="Grey olive"><span>RAL 6006</span></button>
+            <button type="button" class="ral-bar" style="background:#283424; color:#ffffff;" data-ral="RAL 6007 Bottle green" title="Bottle green"><span>RAL 6007</span></button>
+            <button type="button" class="ral-bar" style="background:#35382E; color:#ffffff;" data-ral="RAL 6008 Brown green" title="Brown green"><span>RAL 6008</span></button>
+            <button type="button" class="ral-bar" style="background:#26392F; color:#ffffff;" data-ral="RAL 6009 Fir green" title="Fir green"><span>RAL 6009</span></button>
+            <button type="button" class="ral-bar" style="background:#3E753B; color:#ffffff;" data-ral="RAL 6010 Grass green" title="Grass green"><span>RAL 6010</span></button>
+            <button type="button" class="ral-bar" style="background:#68825B; color:#ffffff;" data-ral="RAL 6011 Reseda green" title="Reseda green"><span>RAL 6011</span></button>
+            <button type="button" class="ral-bar" style="background:#31403D; color:#ffffff;" data-ral="RAL 6012 Black green" title="Black green"><span>RAL 6012</span></button>
+            <button type="button" class="ral-bar" style="background:#797C5A; color:#ffffff;" data-ral="RAL 6013 Reed green" title="Reed green"><span>RAL 6013</span></button>
+            <button type="button" class="ral-bar" style="background:#444337; color:#ffffff;" data-ral="RAL 6014 Yellow olive" title="Yellow olive"><span>RAL 6014</span></button>
+            <button type="button" class="ral-bar" style="background:#3D403A; color:#ffffff;" data-ral="RAL 6015 Black olive" title="Black olive"><span>RAL 6015</span></button>
+            <button type="button" class="ral-bar" style="background:#026A52; color:#ffffff;" data-ral="RAL 6016 Turquoise green" title="Turquoise green"><span>RAL 6016</span></button>
+            <button type="button" class="ral-bar" style="background:#468641; color:#ffffff;" data-ral="RAL 6017 May green" title="May green"><span>RAL 6017</span></button>
+            <button type="button" class="ral-bar" style="background:#48A43F; color:#ffffff;" data-ral="RAL 6018 Yellow green" title="Yellow green"><span>RAL 6018</span></button>
+            <button type="button" class="ral-bar" style="background:#B7D9B1; color:#1a1a1a;" data-ral="RAL 6019 Pastel green" title="Pastel green"><span>RAL 6019</span></button>
+            <button type="button" class="ral-bar" style="background:#354733; color:#ffffff;" data-ral="RAL 6020 Chromium green" title="Chromium green"><span>RAL 6020</span></button>
+            <button type="button" class="ral-bar" style="background:#86A47C; color:#1a1a1a;" data-ral="RAL 6021 Pale green" title="Pale green"><span>RAL 6021</span></button>
+            <button type="button" class="ral-bar" style="background:#3E3C32; color:#ffffff;" data-ral="RAL 6022 Brown olive" title="Brown olive"><span>RAL 6022</span></button>
+            <button type="button" class="ral-bar" style="background:#008754; color:#ffffff;" data-ral="RAL 6024 Traffic green" title="Traffic green"><span>RAL 6024</span></button>
+            <button type="button" class="ral-bar" style="background:#53753C; color:#ffffff;" data-ral="RAL 6025 Fern green" title="Fern green"><span>RAL 6025</span></button>
+            <button type="button" class="ral-bar" style="background:#005D52; color:#ffffff;" data-ral="RAL 6026 Opal green" title="Opal green"><span>RAL 6026</span></button>
+            <button type="button" class="ral-bar" style="background:#81C0BB; color:#1a1a1a;" data-ral="RAL 6027 Light green" title="Light green"><span>RAL 6027</span></button>
+            <button type="button" class="ral-bar" style="background:#2D5546; color:#ffffff;" data-ral="RAL 6028 Pine green" title="Pine green"><span>RAL 6028</span></button>
+            <button type="button" class="ral-bar" style="background:#007243; color:#ffffff;" data-ral="RAL 6029 Mint green" title="Mint green"><span>RAL 6029</span></button>
+            <button type="button" class="ral-bar" style="background:#495746; color:#ffffff;" data-ral="RAL 6031 Bronze green" title="Bronze green"><span>RAL 6031</span></button>
+            <button type="button" class="ral-bar" style="background:#0F8558; color:#ffffff;" data-ral="RAL 6032 Signal green" title="Signal green"><span>RAL 6032</span></button>
+            <button type="button" class="ral-bar" style="background:#478A84; color:#ffffff;" data-ral="RAL 6033 Mint turquoise" title="Mint turquoise"><span>RAL 6033</span></button>
+            <button type="button" class="ral-bar" style="background:#7FB0B2; color:#1a1a1a;" data-ral="RAL 6034 Pastel turquoise" title="Pastel turquoise"><span>RAL 6034</span></button>
+            <button type="button" class="ral-bar" style="background:#1B542C; color:#ffffff;" data-ral="RAL 6035 Pearl green" title="Pearl green"><span>RAL 6035</span></button>
+            <button type="button" class="ral-bar" style="background:#005D4C; color:#ffffff;" data-ral="RAL 6036 Pearl opal green" title="Pearl opal green"><span>RAL 6036</span></button>
+            <button type="button" class="ral-bar" style="background:#25E712; color:#ffffff;" data-ral="RAL 6037 Pure green" title="Pure green"><span>RAL 6037</span></button>
+            <button type="button" class="ral-bar" style="background:#00F700; color:#ffffff;" data-ral="RAL 6038 Luminous green" title="Luminous green"><span>RAL 6038</span></button>
+            <button type="button" class="ral-bar" style="background:#B3C43E; color:#1a1a1a;" data-ral="RAL 6039 Fibrous green" title="Fibrous green"><span>RAL 6039</span></button>
+            <button type="button" class="ral-bar" style="background:#7E8B92; color:#ffffff;" data-ral="RAL 7000 Squirrel grey" title="Squirrel grey"><span>RAL 7000</span></button>
+            <button type="button" class="ral-bar" style="background:#8F999F; color:#1a1a1a;" data-ral="RAL 7001 Silver grey" title="Silver grey"><span>RAL 7001</span></button>
+            <button type="button" class="ral-bar" style="background:#817F68; color:#ffffff;" data-ral="RAL 7002 Olive grey" title="Olive grey"><span>RAL 7002</span></button>
+            <button type="button" class="ral-bar" style="background:#7A7B6D; color:#ffffff;" data-ral="RAL 7003 Moss grey" title="Moss grey"><span>RAL 7003</span></button>
+            <button type="button" class="ral-bar" style="background:#9EA0A1; color:#1a1a1a;" data-ral="RAL 7004 Signal grey" title="Signal grey"><span>RAL 7004</span></button>
+            <button type="button" class="ral-bar" style="background:#6B716F; color:#ffffff;" data-ral="RAL 7005 Mouse grey" title="Mouse grey"><span>RAL 7005</span></button>
+            <button type="button" class="ral-bar" style="background:#756F61; color:#ffffff;" data-ral="RAL 7006 Beige grey" title="Beige grey"><span>RAL 7006</span></button>
+            <button type="button" class="ral-bar" style="background:#746643; color:#ffffff;" data-ral="RAL 7008 Khaki grey" title="Khaki grey"><span>RAL 7008</span></button>
+            <button type="button" class="ral-bar" style="background:#5B6259; color:#ffffff;" data-ral="RAL 7009 Green grey" title="Green grey"><span>RAL 7009</span></button>
+            <button type="button" class="ral-bar" style="background:#575D57; color:#ffffff;" data-ral="RAL 7010 Tarpaulin grey" title="Tarpaulin grey"><span>RAL 7010</span></button>
+            <button type="button" class="ral-bar" style="background:#555D61; color:#ffffff;" data-ral="RAL 7011 Iron grey" title="Iron grey"><span>RAL 7011</span></button>
+            <button type="button" class="ral-bar" style="background:#596163; color:#ffffff;" data-ral="RAL 7012 Basalt grey" title="Basalt grey"><span>RAL 7012</span></button>
+            <button type="button" class="ral-bar" style="background:#555548; color:#ffffff;" data-ral="RAL 7013 Brown grey or NATO olive" title="Brown grey or NATO olive"><span>RAL 7013</span></button>
+            <button type="button" class="ral-bar" style="background:#51565C; color:#ffffff;" data-ral="RAL 7015 Slate grey" title="Slate grey"><span>RAL 7015</span></button>
+            <button type="button" class="ral-bar" style="background:#373F43; color:#ffffff;" data-ral="RAL 7016 Anthracite grey" title="Anthracite grey"><span>RAL 7016</span></button>
+            <button type="button" class="ral-bar" style="background:#2E3234; color:#ffffff;" data-ral="RAL 7021 Black grey" title="Black grey"><span>RAL 7021</span></button>
+            <button type="button" class="ral-bar" style="background:#4B4D46; color:#ffffff;" data-ral="RAL 7022 Umbra grey" title="Umbra grey"><span>RAL 7022</span></button>
+            <button type="button" class="ral-bar" style="background:#818479; color:#ffffff;" data-ral="RAL 7023 Concrete grey" title="Concrete grey"><span>RAL 7023</span></button>
+            <button type="button" class="ral-bar" style="background:#474A50; color:#ffffff;" data-ral="RAL 7024 Graphite grey" title="Graphite grey"><span>RAL 7024</span></button>
+            <button type="button" class="ral-bar" style="background:#374447; color:#ffffff;" data-ral="RAL 7026 Granite grey" title="Granite grey"><span>RAL 7026</span></button>
+            <button type="button" class="ral-bar" style="background:#939388; color:#ffffff;" data-ral="RAL 7030 Stone grey" title="Stone grey"><span>RAL 7030</span></button>
+            <button type="button" class="ral-bar" style="background:#5D6970; color:#ffffff;" data-ral="RAL 7031 Blue grey" title="Blue grey"><span>RAL 7031</span></button>
+            <button type="button" class="ral-bar" style="background:#B9B9A8; color:#1a1a1a;" data-ral="RAL 7032 Pebble grey" title="Pebble grey"><span>RAL 7032</span></button>
+            <button type="button" class="ral-bar" style="background:#818979; color:#ffffff;" data-ral="RAL 7033 Cement grey" title="Cement grey"><span>RAL 7033</span></button>
+            <button type="button" class="ral-bar" style="background:#939176; color:#ffffff;" data-ral="RAL 7034 Yellow grey" title="Yellow grey"><span>RAL 7034</span></button>
+            <button type="button" class="ral-bar" style="background:#CBD0CC; color:#1a1a1a;" data-ral="RAL 7035 Light grey" title="Light grey"><span>RAL 7035</span></button>
+            <button type="button" class="ral-bar" style="background:#9A9697; color:#1a1a1a;" data-ral="RAL 7036 Platinum grey" title="Platinum grey"><span>RAL 7036</span></button>
+            <button type="button" class="ral-bar" style="background:#7C7F7E; color:#ffffff;" data-ral="RAL 7037 Dusty grey" title="Dusty grey"><span>RAL 7037</span></button>
+            <button type="button" class="ral-bar" style="background:#B4B8B0; color:#1a1a1a;" data-ral="RAL 7038 Agate grey" title="Agate grey"><span>RAL 7038</span></button>
+            <button type="button" class="ral-bar" style="background:#6B695F; color:#ffffff;" data-ral="RAL 7039 Quartz grey" title="Quartz grey"><span>RAL 7039</span></button>
+            <button type="button" class="ral-bar" style="background:#9DA3A6; color:#1a1a1a;" data-ral="RAL 7040 Window grey" title="Window grey"><span>RAL 7040</span></button>
+            <button type="button" class="ral-bar" style="background:#8F9695; color:#ffffff;" data-ral="RAL 7042 Traffic grey A" title="Traffic grey A"><span>RAL 7042</span></button>
+            <button type="button" class="ral-bar" style="background:#4E5451; color:#ffffff;" data-ral="RAL 7043 Traffic grey B" title="Traffic grey B"><span>RAL 7043</span></button>
+            <button type="button" class="ral-bar" style="background:#BDBDB2; color:#1a1a1a;" data-ral="RAL 7044 Silk grey" title="Silk grey"><span>RAL 7044</span></button>
+            <button type="button" class="ral-bar" style="background:#888175; color:#ffffff;" data-ral="RAL 7048 Pearl mouse grey" title="Pearl mouse grey"><span>RAL 7048</span></button>
+            <button type="button" class="ral-bar" style="background:#887142; color:#ffffff;" data-ral="RAL 8000 Green brown" title="Green brown"><span>RAL 8000</span></button>
+            <button type="button" class="ral-bar" style="background:#9C6B30; color:#ffffff;" data-ral="RAL 8001 Ochre brown" title="Ochre brown"><span>RAL 8001</span></button>
+            <button type="button" class="ral-bar" style="background:#7B5141; color:#ffffff;" data-ral="RAL 8002 Signal brown" title="Signal brown"><span>RAL 8002</span></button>
+            <button type="button" class="ral-bar" style="background:#80542F; color:#ffffff;" data-ral="RAL 8003 Clay brown" title="Clay brown"><span>RAL 8003</span></button>
+            <button type="button" class="ral-bar" style="background:#8F4E35; color:#ffffff;" data-ral="RAL 8004 Copper brown" title="Copper brown"><span>RAL 8004</span></button>
+            <button type="button" class="ral-bar" style="background:#6F4A2F; color:#ffffff;" data-ral="RAL 8007 Fawn brown" title="Fawn brown"><span>RAL 8007</span></button>
+            <button type="button" class="ral-bar" style="background:#6F4F28; color:#ffffff;" data-ral="RAL 8008 Olive brown" title="Olive brown"><span>RAL 8008</span></button>
+            <button type="button" class="ral-bar" style="background:#5A3A29; color:#ffffff;" data-ral="RAL 8011 Nut brown" title="Nut brown"><span>RAL 8011</span></button>
+            <button type="button" class="ral-bar" style="background:#673831; color:#ffffff;" data-ral="RAL 8012 Red brown" title="Red brown"><span>RAL 8012</span></button>
+            <button type="button" class="ral-bar" style="background:#49392D; color:#ffffff;" data-ral="RAL 8014 Sepia brown" title="Sepia brown"><span>RAL 8014</span></button>
+            <button type="button" class="ral-bar" style="background:#633A34; color:#ffffff;" data-ral="RAL 8015 Chestnut brown" title="Chestnut brown"><span>RAL 8015</span></button>
+            <button type="button" class="ral-bar" style="background:#4C2F26; color:#ffffff;" data-ral="RAL 8016 Mahogany brown" title="Mahogany brown"><span>RAL 8016</span></button>
+            <button type="button" class="ral-bar" style="background:#44322D; color:#ffffff;" data-ral="RAL 8017 Chocolate brown" title="Chocolate brown"><span>RAL 8017</span></button>
+            <button type="button" class="ral-bar" style="background:#3F3A3A; color:#ffffff;" data-ral="RAL 8019 Grey brown" title="Grey brown"><span>RAL 8019</span></button>
+            <button type="button" class="ral-bar" style="background:#211F20; color:#ffffff;" data-ral="RAL 8022 Black brown" title="Black brown"><span>RAL 8022</span></button>
+            <button type="button" class="ral-bar" style="background:#A65E2F; color:#ffffff;" data-ral="RAL 8023 Orange brown" title="Orange brown"><span>RAL 8023</span></button>
+            <button type="button" class="ral-bar" style="background:#79553C; color:#ffffff;" data-ral="RAL 8024 Beige brown" title="Beige brown"><span>RAL 8024</span></button>
+            <button type="button" class="ral-bar" style="background:#755C49; color:#ffffff;" data-ral="RAL 8025 Pale brown" title="Pale brown"><span>RAL 8025</span></button>
+            <button type="button" class="ral-bar" style="background:#4E3B2B; color:#ffffff;" data-ral="RAL 8028 Terra brown" title="Terra brown"><span>RAL 8028</span></button>
+            <button type="button" class="ral-bar" style="background:#773C27; color:#ffffff;" data-ral="RAL 8029 Pearl copper" title="Pearl copper"><span>RAL 8029</span></button>
+            <button type="button" class="ral-bar" style="background:#EFEBDC; color:#1a1a1a;" data-ral="RAL 9001 Cream" title="Cream"><span>RAL 9001</span></button>
+            <button type="button" class="ral-bar" style="background:#DDDED4; color:#1a1a1a;" data-ral="RAL 9002 Grey white" title="Grey white"><span>RAL 9002</span></button>
+            <button type="button" class="ral-bar" style="background:#FFFFFF; color:#1a1a1a;" data-ral="RAL 9003 Signal white" title="Signal white"><span>RAL 9003</span></button>
+            <button type="button" class="ral-bar" style="background:#2E3032; color:#ffffff;" data-ral="RAL 9004 Signal black" title="Signal black"><span>RAL 9004</span></button>
+            <button type="button" class="ral-bar" style="background:#131516; color:#ffffff;" data-ral="RAL 9005 Jet black" title="Jet black"><span>RAL 9005</span></button>
+            <button type="button" class="ral-bar" style="background:#A5A8A6; color:#1a1a1a;" data-ral="RAL 9006 White aluminium" title="White aluminium"><span>RAL 9006</span></button>
+            <button type="button" class="ral-bar" style="background:#8F8F8C; color:#ffffff;" data-ral="RAL 9007 Grey aluminium" title="Grey aluminium"><span>RAL 9007</span></button>
+            <button type="button" class="ral-bar" style="background:#F7F9EF; color:#1a1a1a;" data-ral="RAL 9010 Pure white" title="Pure white"><span>RAL 9010</span></button>
+            <button type="button" class="ral-bar" style="background:#1C1C1C; color:#ffffff;" data-ral="RAL 9011 Graphite black" title="Graphite black"><span>RAL 9011</span></button>
+            <button type="button" class="ral-bar" style="background:#FFFDE6; color:#1a1a1a;" data-ral="RAL 9012 Clean room white" title="Clean room white"><span>RAL 9012</span></button>
+            <button type="button" class="ral-bar" style="background:#F7FBF5; color:#1a1a1a;" data-ral="RAL 9016 Traffic white" title="Traffic white"><span>RAL 9016</span></button>
+            <button type="button" class="ral-bar" style="background:#2A2D2F; color:#ffffff;" data-ral="RAL 9017 Traffic black" title="Traffic black"><span>RAL 9017</span></button>
+            <button type="button" class="ral-bar" style="background:#CFD3CD; color:#1a1a1a;" data-ral="RAL 9018 Papyrus white" title="Papyrus white"><span>RAL 9018</span></button>
+            <button type="button" class="ral-bar" style="background:#858583; color:#ffffff;" data-ral="RAL 9022 Pearl light grey" title="Pearl light grey"><span>RAL 9022</span></button>
+            <button type="button" class="ral-bar" style="background:#7E8182; color:#ffffff;" data-ral="RAL 9023 Pearl dark grey" title="Pearl dark grey"><span>RAL 9023</span></button>
+        </div>
+    </aside>
     </div>
     <a class="mobile-quote-bar" href="#quote">Get a Quote</a>
 
@@ -520,21 +521,31 @@
             if (attempt && attempt.catch) attempt.catch(function () { /* autoplay blocked: show first frame */ });
         })();
 
-        // Colours: clicking a RAL bar adds it to the quote form and the phone quick-quote email
+        // Colour strip: contents move only when the page scrolls; clicking a bar adds it to the quote
         (function () {
-            var list = document.getElementById('colourList');
-            if (!list) return;
+            var strip = document.getElementById('colourStrip');
+            var inner = document.getElementById('colourStripInner');
+            if (!strip || !inner) return;
             var details = document.getElementById('qDetails');
             var quick = document.querySelector('.quick-quote a.btn');
             var quickBase = quick ? quick.getAttribute('href') : null;
-            list.addEventListener('click', function (e) {
-                var row = e.target.closest('.colour-row');
-                if (!row) return;
-                var ral = row.getAttribute('data-ral');
-                var line = 'Colour: ' + ral;
-                var prev = list.querySelector('.colour-row.selected');
+            function sync() {
+                var pageMax = document.documentElement.scrollHeight - window.innerHeight;
+                var stripMax = inner.scrollHeight - strip.clientHeight;
+                if (pageMax <= 0 || stripMax <= 0) { inner.style.transform = 'none'; return; }
+                var f = Math.min(1, Math.max(0, window.scrollY / pageMax));
+                inner.style.transform = 'translateY(' + (-f * stripMax) + 'px)';
+            }
+            window.addEventListener('scroll', sync, { passive: true });
+            window.addEventListener('resize', sync);
+            sync();
+            inner.addEventListener('click', function (e) {
+                var bar = e.target.closest('.ral-bar');
+                if (!bar) return;
+                var line = 'Colour: ' + bar.getAttribute('data-ral');
+                var prev = inner.querySelector('.ral-bar.selected');
                 if (prev) prev.classList.remove('selected');
-                row.classList.add('selected');
+                bar.classList.add('selected');
                 if (details) {
                     var cleaned = details.value.replace(/^Colour: RAL .*$\n?/m, '');
                     details.value = line + (cleaned ? '\n' + cleaned : '\n');
