@@ -13,21 +13,66 @@
             color: #1a2a44; 
             background: #ffffff; 
         }
-        header { 
+        /* Layout: fixed red sidebar (desktop) + scrolling content */
+        .layout { display: flex; min-height: 100vh; }
+        .sidebar { 
             background: #c8102e; 
-            padding: 1.5rem 1rem; 
+            color: #ffffff; 
             text-align: center; 
+            padding: 2rem 1.5rem; 
+            width: 33.333%; 
+            max-width: 380px; 
+            flex-shrink: 0; 
+            position: sticky; 
+            top: 0; 
+            height: 100vh; 
+            align-self: flex-start; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            gap: 0.6rem; 
+            box-sizing: border-box; 
         }
-        header p { color: #ffffff; line-height: 1.2; }
-        .tagline { font-size: 1.6rem; font-style: italic; font-weight: bold; }
-        .tagline-phone { font-size: 2.4rem; font-weight: bold; margin: 0.2rem 0; }
-        .tagline-phone a { color: #ffffff; text-decoration: none; }
-        .tagline-web { font-size: 1.4rem; font-weight: bold; }
-        .hero { 
+        .sidebar img { width: 160px; max-width: 70%; margin: 0 auto 1rem; display: block; background: #fff; border-radius: 8px; padding: 0.5rem; }
+        .sidebar p { line-height: 1.3; }
+        .sidebar a { color: #ffffff; text-decoration: none; }
+        .sidebar .tagline { font-size: 1.5rem; font-style: italic; font-weight: bold; margin-bottom: 0.6rem; }
+        .sidebar .phone { font-size: 2.2rem; font-weight: bold; }
+        .sidebar .email { font-size: 1.15rem; word-break: break-all; }
+        .sidebar .address { font-size: 1.05rem; margin-top: 0.4rem; }
+        .sidebar .btn-quote { 
+            display: block; 
+            margin-top: 1.5rem; 
             background: #ffffff; 
-            color: #1a2a44; 
-            text-align: center; 
-            padding: 3rem 1rem; 
+            color: #c8102e; 
+            font-size: 1.3rem; 
+            font-weight: bold; 
+            padding: 1rem; 
+            border-radius: 4px; 
+        }
+        .content { flex: 1; min-width: 0; }
+        .top-strip { background: #c8102e; height: 2.6rem; }
+        .mobile-quote-bar { display: none; }
+        @media (max-width: 899px) {
+            .layout { display: block; }
+            .sidebar { position: static; width: auto; max-width: none; height: auto; padding: 1.5rem 1rem; }
+            .sidebar .btn-quote { display: none; }
+            .top-strip { display: none; }
+            .mobile-quote-bar { 
+                display: block; 
+                position: fixed; 
+                left: 0; right: 0; bottom: 0; 
+                background: #c8102e; 
+                color: #ffffff; 
+                text-align: center; 
+                font-size: 1.3rem; 
+                font-weight: bold; 
+                padding: 1rem; 
+                text-decoration: none; 
+                box-shadow: 0 -2px 8px rgba(0,0,0,0.25); 
+                z-index: 10; 
+            }
+            body { padding-bottom: 4.5rem; }
         }
         .intro-video { 
             display: block; 
@@ -107,17 +152,22 @@
     </style>
 </head>
 <body>
-    <header>
+    <div class="layout">
+    <aside class="sidebar">
+        <img src="assets/logo-square.gif" alt="C&C Coatings logo">
         <p class="tagline">We make metals last longer</p>
-        <p class="tagline-phone"><a href="tel:+15193328175">519 332 8175</a></p>
-        <p class="tagline-web">www.cccoatings.com</p>
-    </header>
+        <p class="phone"><a href="tel:+15193328175">519 332 8175</a></p>
+        <p class="email"><a href="mailto:tom@cccoatings.com">tom@cccoatings.com</a></p>
+        <p class="address">1380 Lougar Ave<br>Sarnia, ON N7S 5N7</p>
+        <a class="btn-quote" href="#quote">Get a Quote</a>
+    </aside>
+    <main class="content">
+    <div class="top-strip"></div>
 
     <section class="hero">
         <video id="introVideo" class="intro-video" src="assets/video/black-white.mp4" muted autoplay playsinline preload="auto" aria-label="C&C Coatings powder coating in action"></video>
         <h2 style="font-size:2.2rem; color:#c8102e;">Durable Powder & Non-Stick Finishes</h2>
         <p style="font-size:1.4rem;">Automotive • Industrial • Bakeware • 20+ Years in Sarnia Chemical Valley</p>
-        <a href="#quote"><button>Request Quote Now</button></a>
     </section>
 
     <section id="process">
@@ -184,6 +234,9 @@
         <p>C&C Coatings • 1380 Lougar Ave, Sarnia, ON N7S 5N7 • (519) 332-8175 • tom@cccoatings.com</p>
         <p>20+ Years Serving Southern Ontario</p>
     </footer>
+    </main>
+    </div>
+    <a class="mobile-quote-bar" href="#quote">Get a Quote</a>
 
     <script>
         // Intro video: plays once on page load / refresh, stops at 8.5 seconds.
