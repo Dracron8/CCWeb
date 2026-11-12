@@ -28,7 +28,10 @@ jobs:
       - name: Stage only the public site files
         run: |
           mkdir -p _site
-          cp index.html CNAME .nojekyll _site/
+          cp index.html .nojekyll _site/
+          # CNAME is deliberately NOT copied yet. Shipping it makes GitHub re-apply the
+          # cccoatings.com custom domain on every deploy, which redirects the github.io
+          # preview to the old host. Add CNAME back here on launch day (DNS move).
           cp -r assets _site/assets
 
       - uses: actions/configure-pages@v5
