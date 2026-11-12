@@ -9,6 +9,7 @@ Website for **C&C Coatings** — powder coating and PTFE/fluoropolymer non-stick
 ## Structure
 
 - `index.html` — the site (single page, no build step; just open it in a browser)
+- `404.html` — shown for old URLs from the previous site; sends visitors to the home page
 - `CNAME`, `.nojekyll` — GitHub Pages custom-domain config
 - `.github/workflows/pages.yml` — publishes `index.html` + `assets/` to GitHub Pages on every push to `main`
 - `docs/hosting-migration.md` — runbook for moving off the old host
