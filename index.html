@@ -55,7 +55,17 @@
             border-radius: 4px; 
         }
         .content { flex: 1; min-width: 0; }
-        .top-strip { background: #c8102e; height: 2.6rem; }
+        .top-strip { 
+            background: #c8102e; 
+            color: #ffffff; 
+            min-height: 3.4rem; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 0.6rem 1rem; 
+        }
+        .top-strip p { font-size: 1.02rem; font-weight: bold; text-align: center; letter-spacing: 0.02em; }
+        .hero p.subline { display: none; }
         /* Right-hand colour strip: pinned like the sidebar, contents move with page scroll */
         .colour-strip { 
             width: max-content; 
@@ -105,6 +115,7 @@
             .addr-br { display: none; }
             .sidebar .btn-quote { display: none; }
             .top-strip { display: none; }
+            .hero p.subline { display: block; }
             .colour-strip { display: none; }
             .hero { padding: 0.75rem 1rem 0.5rem; }
             .hero h2 { font-size: 1.35rem !important; line-height: 1.15; margin-bottom: 0.4rem; }
@@ -219,11 +230,11 @@
         <a class="btn-quote" href="#quote">Get a Quote</a>
     </aside>
     <main class="content">
-    <div class="top-strip"></div>
+    <div class="top-strip"><p>PTFE Non-Stick • Release • Halar® • Low-Friction • Sandblasting • Powder Coating • 20+ Years in Sarnia Chemical Valley</p></div>
 
     <section class="hero">
         <h2 style="font-size:2.2rem; color:#c8102e;">Industrial Non-Stick, Release & Powder Coatings</h2>
-        <p style="font-size:1.4rem; margin-bottom:1.5rem;">PTFE • Fluoropolymer • Halar® • Low-Friction • Powder • 20+ Years in Sarnia Chemical Valley</p>
+        <p class="subline" style="font-size:1.4rem; margin-bottom:1.5rem;">PTFE Non-Stick • Release • Halar® • Low-Friction • Sandblasting • Powder • 20+ Years in Sarnia Chemical Valley</p>
         <video id="introVideo" class="intro-video" src="assets/video/black-white.mp4" muted autoplay playsinline preload="auto" aria-label="C&C Coatings coating in action"></video>
     </section>
 
