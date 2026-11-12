@@ -13,15 +13,17 @@
             color: #1a2a44; 
             background: #ffffff; 
         }
+        .hero { text-align: center; padding: 3rem 1rem; }
+        .hero p { font-size: 1.4rem; }
         /* Layout: fixed red sidebar (desktop) + scrolling content */
         .layout { display: flex; min-height: 100vh; }
         .sidebar { 
             background: #c8102e; 
             color: #ffffff; 
             text-align: center; 
-            padding: 2rem 1.5rem; 
-            width: 33.333%; 
-            max-width: 380px; 
+            padding: 1.5rem 1rem; 
+            width: 25%; 
+            max-width: 285px; 
             flex-shrink: 0; 
             position: sticky; 
             top: 0; 
@@ -33,21 +35,21 @@
             gap: 0.6rem; 
             box-sizing: border-box; 
         }
-        .sidebar img { width: 160px; max-width: 70%; margin: 0 auto 1rem; display: block; background: #fff; border-radius: 8px; padding: 0.5rem; }
+        .sidebar img { width: 130px; max-width: 70%; margin: 0 auto 1rem; display: block; background: #fff; border-radius: 8px; padding: 0.5rem; }
         .sidebar p { line-height: 1.3; }
         .sidebar a { color: #ffffff; text-decoration: none; }
-        .sidebar .tagline { font-size: 1.5rem; font-style: italic; font-weight: bold; margin-bottom: 0.6rem; }
-        .sidebar .phone { font-size: 2.2rem; font-weight: bold; }
-        .sidebar .email { font-size: 1.15rem; word-break: break-all; }
-        .sidebar .address { font-size: 1.05rem; margin-top: 0.4rem; }
+        .sidebar .tagline { font-size: 1.1rem; font-style: italic; font-weight: bold; margin-bottom: 0.6rem; }
+        .sidebar .phone { font-size: 1.8rem; font-weight: bold; }
+        .sidebar .email { font-size: 1rem; word-break: break-all; }
+        .sidebar .address { font-size: 0.95rem; margin-top: 0.4rem; }
         .sidebar .btn-quote { 
             display: block; 
             margin-top: 1.5rem; 
             background: #ffffff; 
             color: #c8102e; 
-            font-size: 1.3rem; 
+            font-size: 1.15rem; 
             font-weight: bold; 
-            padding: 1rem; 
+            padding: 0.9rem; 
             border-radius: 4px; 
         }
         .content { flex: 1; min-width: 0; }
@@ -55,8 +57,14 @@
         .mobile-quote-bar { display: none; }
         @media (max-width: 899px) {
             .layout { display: block; }
-            .sidebar { position: static; width: auto; max-width: none; height: auto; padding: 1.5rem 1rem; }
-            .sidebar .btn-quote { display: none; }
+            .sidebar { 
+                position: static; width: auto; max-width: none; height: auto; 
+                padding: 0.6rem 1rem; 
+                flex-direction: row; justify-content: space-between; align-items: center; gap: 1rem; 
+            }
+            .sidebar img { width: 64px; margin: 0; padding: 0.25rem; border-radius: 6px; }
+            .sidebar .phone { font-size: 1.5rem; }
+            .sidebar .tagline, .sidebar .email, .sidebar .address, .sidebar .btn-quote { display: none; }
             .top-strip { display: none; }
             .mobile-quote-bar { 
                 display: block; 
