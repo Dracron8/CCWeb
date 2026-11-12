@@ -168,7 +168,7 @@
             }
             .colour-strip button.ral-bar { height: 28px; padding: 0; }
             .colour-strip button.ral-bar span { display: none; }
-            .content, .sidebar { padding-right: 18px; }
+            .content { padding-right: 18px; }
             main #services .services-grid { grid-template-columns: 1fr; }
             main #services .card, main #services .card:nth-child(4) { grid-column: auto; }
             .hero { padding: 0.75rem 1rem 0.5rem; }
@@ -474,7 +474,20 @@
             var details = document.getElementById('qDetails');
             var quick = document.querySelector('.quick-quote a.btn');
             var quickBase = quick ? quick.getAttribute('href') : null;
+            var header = document.querySelector('.sidebar');
+            var quoteBar = document.querySelector('.mobile-quote-bar');
             function sync() {
+                // Phone: ribbon starts at the bottom of the red header while it is on screen,
+                // then fills to the top once the header has scrolled away.
+                if (window.matchMedia('(max-width: 899px)').matches && header && quoteBar) {
+                    var top = Math.max(0, header.getBoundingClientRect().bottom);
+                    var barTop = quoteBar.getBoundingClientRect().top;
+                    strip.style.top = top + 'px';
+                    strip.style.height = Math.max(0, barTop - top) + 'px';
+                } else {
+                    strip.style.top = '';
+                    strip.style.height = '';
+                }
                 var pageMax = document.documentElement.scrollHeight - window.innerHeight;
                 var stripMax = inner.scrollHeight - strip.clientHeight;
                 if (pageMax <= 0 || stripMax <= 0) { inner.style.transform = 'none'; return; }
