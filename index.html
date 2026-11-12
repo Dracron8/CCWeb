@@ -15,6 +15,25 @@
         }
         .hero { text-align: center; padding: 1.5rem 1rem 1rem; display: flex; flex-direction: column; align-items: center; }
         .hero .hero-title { margin: 0; }
+        .video-wrap { position: relative; display: inline-block; max-width: 100%; line-height: 0; }
+        .replay-btn { 
+            position: absolute; 
+            right: 14px; 
+            bottom: 14px; 
+            width: auto; 
+            padding: 0.6rem 1rem; 
+            font-size: 1rem; 
+            font-weight: bold; 
+            line-height: 1; 
+            border-radius: 999px; 
+            background: rgba(200, 16, 46, 0.92); 
+            color: #fff; 
+            border: 2px solid #fff; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3); 
+            cursor: pointer; 
+        }
+        .replay-btn:hover { background: #a50d26; }
+        .replay-btn[hidden] { display: none; }
         .hero .intro-video { max-height: calc(100vh - 215px); width: auto; max-width: 100%; margin-bottom: 1.25rem; }
         .hero p { font-size: 1.4rem; }
         /* Layout: fixed red sidebar (desktop) + scrolling content */
@@ -238,7 +257,10 @@
     <div class="top-strip"><p>PTFE Non-Stick • Release • Halar® • Low-Friction • Sandblasting • Powder Coating • 20+ Years in Sarnia Chemical Valley</p></div>
 
     <section class="hero">
-        <video id="introVideo" class="intro-video" src="assets/video/black-white.mp4" muted autoplay playsinline preload="auto" aria-label="C&C Coatings coating in action"></video>
+        <div class="video-wrap">
+            <video id="introVideo" class="intro-video" src="assets/video/black-white.mp4" muted autoplay playsinline preload="auto" aria-label="C&C Coatings coating in action"></video>
+            <button type="button" id="replayBtn" class="replay-btn" aria-label="Replay video" hidden>&#8635; Replay</button>
+        </div>
         <h2 class="hero-title" style="font-size:2.2rem; color:#c8102e;">Industrial Non-Stick, Release & Powder Coatings</h2>
         <p class="subline" style="font-size:1.4rem; margin-bottom:1.5rem;">PTFE Non-Stick • Release • Halar® • Low-Friction • Sandblasting • Powder • 20+ Years in Sarnia Chemical Valley</p>
     </section>
@@ -395,8 +417,17 @@
                     video.pause();
                 }
             });
+            var replay = document.getElementById('replayBtn');
+            function showReplay(label) { if (replay) { replay.innerHTML = '&#8635; ' + label; replay.hidden = false; } }
+            video.addEventListener('ended', function () { showReplay('Replay'); });
+            video.addEventListener('play', function () { if (replay) replay.hidden = true; });
+            if (replay) replay.addEventListener('click', function () {
+                video.currentTime = 0;
+                var p = video.play();
+                if (p && p.catch) p.catch(function () {});
+            });
             var attempt = video.play();
-            if (attempt && attempt.catch) attempt.catch(function () { /* autoplay blocked: show first frame */ });
+            if (attempt && attempt.catch) attempt.catch(function () { showReplay('Play'); });
         })();
 
         // Colour strip: contents move only when the page scrolls; clicking a bar adds it to the quote
