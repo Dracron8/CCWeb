@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="C&C Coatings - Powder coating and PTFE/fluoropolymer non-stick coatings in Sarnia, Ontario. Automotive, industrial, bakeware.">
-    <title>C&C Coatings | Sarnia, ON</title>
+    <meta name="description" content="C&C Coatings, Sarnia, Ontario: industrial PTFE non-stick and release coatings (the coating most people know as Teflon), Halar ECTFE chemical-resistant coatings, low-friction coatings, and powder coating. 20+ years in Chemical Valley.">
+    <title>C&C Coatings | PTFE Non-Stick, Release & Industrial Coatings | Sarnia, ON</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
@@ -191,6 +191,9 @@
         @media (hover: none) and (pointer: coarse) {
             .quick-quote, .or-divider { display: block; }
         }
+        .lead { text-align: center; font-size: 1.2rem; max-width: 800px; margin: 0 auto 2rem; }
+        .lead-note { text-align: center; margin-top: 1.5rem; font-size: 1.05rem; }
+        .lead-note a { color: #c8102e; font-weight: bold; }
         footer { 
             background: #c8102e; 
             color: white; 
@@ -216,8 +219,28 @@
 
     <section class="hero">
         <video id="introVideo" class="intro-video" src="assets/video/black-white.mp4" muted autoplay playsinline preload="auto" aria-label="C&C Coatings powder coating in action"></video>
-        <h2 style="font-size:2.2rem; color:#c8102e;">Durable Powder & Non-Stick Finishes</h2>
-        <p style="font-size:1.4rem;">Automotive • Industrial • Bakeware • 20+ Years in Sarnia Chemical Valley</p>
+        <h2 style="font-size:2.2rem; color:#c8102e;">Industrial Non-Stick, Release & Powder Coatings</h2>
+        <p style="font-size:1.4rem;">PTFE • Fluoropolymer • Halar® • Low-Friction • Powder • 20+ Years in Sarnia Chemical Valley</p>
+    </section>
+
+    <section id="nonstick">
+        <h2>Non-Stick &amp; Release Coatings</h2>
+        <p class="lead">Our core business. PTFE fluoropolymer non-stick, the coating most people know as Teflon, applied to industrial and commercial parts that need easy release, quick cleanup and long service life.</p>
+        <div class="services-grid">
+            <div class="card">
+                <h3>What we coat</h3>
+                <p>Bakeware and food-processing equipment, moulds and release surfaces, industrial paint grates and fixtures, rollers, chutes, hoppers and any part where product sticking costs you time.</p>
+            </div>
+            <div class="card">
+                <h3>Why it pays</h3>
+                <p>From bakeware to industrial paint grates, our low-friction coatings enable quicker clean-up, reducing man-hours while increasing productivity. Less downtime, less scrap, less labour.</p>
+            </div>
+            <div class="card">
+                <h3>Chemical resistance</h3>
+                <p>Halar® ECTFE: when chemical resistance is essential, Halar is the pin-hole-free coating you need for process equipment in Chemical Valley and beyond.</p>
+            </div>
+        </div>
+        <p class="lead-note">Automotive, industrial and medical parts. Any job, large or small. <a href="#quote">Request a quote</a> or call <a href="tel:+15193328175">(519) 332-8175</a>.</p>
     </section>
 
     <section id="process">
@@ -231,12 +254,12 @@
             <div class="card">
                 <h3>Apply Coating</h3>
                 <img src="assets/powder-spray.jpg" alt="Electrostatic powder coating spray" style="width:100%; border-radius:8px; margin-bottom:1rem;">
-                <p>Powder or PTFE/fluoropolymer non-stick.</p>
+                <p>PTFE/fluoropolymer non-stick, Halar®, low-friction or powder, spray-applied to spec.</p>
             </div>
             <div class="card">
                 <h3>Cure in Batch Oven</h3>
                 <img src="assets/coated-part.jpg" alt="Coating applied to industrial part" style="width:100%; border-radius:8px; margin-bottom:1rem;">
-                <p>Long-lasting, tough finishes.</p>
+                <p>Oven-cured for a bonded, long-lasting finish.</p>
             </div>
         </div>
     </section>
@@ -245,16 +268,24 @@
         <h2>Services</h2>
         <div class="services-grid">
             <div class="card">
-                <h3>Powder Coating</h3>
-                <p>Rims, frames, automotive parts, industrial railings, playground equipment.</p>
-            </div>
-            <div class="card">
                 <h3>PTFE / Fluoropolymer Non-Stick</h3>
-                <p>Bakeware, pizza trays, commercial kitchen, low-friction parts.</p>
+                <p>Non-stick and release coatings for bakeware, pizza trays, commercial kitchen and food equipment, moulds and industrial parts.</p>
             </div>
             <div class="card">
                 <h3>Halar® (ECTFE)</h3>
-                <p>Extreme chemical resistance.</p>
+                <p>Pin-hole-free, chemical-resistant coating for process and plant equipment.</p>
+            </div>
+            <div class="card">
+                <h3>Low-Friction Coatings</h3>
+                <p>Reduce drag, wear and sticking on moving and sliding parts.</p>
+            </div>
+            <div class="card">
+                <h3>Sandblasting</h3>
+                <p>Strip old coatings, rust and scale. Prep for coating or on its own.</p>
+            </div>
+            <div class="card">
+                <h3>Powder Coating</h3>
+                <p>Durable colour for rims, frames, automotive parts, railings and playground equipment. See the colour strip for RAL options.</p>
             </div>
         </div>
     </section>
@@ -270,7 +301,7 @@
             <input type="text" id="qName" name="name" placeholder="Your Name" required>
             <input type="email" id="qEmail" name="email" placeholder="Email" required>
             <input type="tel" id="qPhone" name="phone" placeholder="Phone" value="+1 (519)">
-            <textarea id="qDetails" name="details" placeholder="Tell us about your parts (rims, bakeware, industrial, etc.)" rows="4" required></textarea>
+            <textarea id="qDetails" name="details" placeholder="Tell us about your parts (industrial equipment, bakeware, moulds, rims, etc.)" rows="4" required></textarea>
             <button type="submit">Send Quote Request</button>
             <p id="quoteNote" style="text-align:center; margin-top:1rem; font-size:1rem;">
                 This opens your email app with the request filled in. Or email
