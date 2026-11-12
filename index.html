@@ -37,11 +37,13 @@
         }
         .sidebar img { width: 130px; max-width: 70%; margin: 0 auto 1rem; display: block; background: #fff; border-radius: 8px; padding: 0.5rem; }
         .sidebar p { line-height: 1.3; }
+        .side-text { display: flex; flex-direction: column; gap: 0.6rem; }
         .sidebar a { color: #ffffff; text-decoration: none; }
         .sidebar .tagline { font-size: 1.1rem; font-style: italic; font-weight: bold; margin-bottom: 0.6rem; }
         .sidebar .phone { font-size: 1.8rem; font-weight: bold; }
         .sidebar .email { font-size: 1rem; word-break: break-all; }
         .sidebar .address { font-size: 0.95rem; margin-top: 0.4rem; }
+        .addr-sep { display: none; }
         .sidebar .btn-quote { 
             display: block; 
             margin-top: 1.5rem; 
@@ -62,9 +64,15 @@
                 padding: 0.6rem 1rem; 
                 flex-direction: row; justify-content: space-between; align-items: center; gap: 1rem; 
             }
-            .sidebar img { width: 64px; margin: 0; padding: 0.25rem; border-radius: 6px; }
-            .sidebar .phone { font-size: 1.5rem; }
-            .sidebar .tagline, .sidebar .email, .sidebar .address, .sidebar .btn-quote { display: none; }
+            .sidebar img { width: 72px; margin: 0; padding: 0.25rem; border-radius: 6px; flex-shrink: 0; }
+            .side-text { gap: 0.15rem; text-align: right; min-width: 0; }
+            .sidebar .tagline { font-size: 1.1rem; margin: 0; }
+            .sidebar .phone { font-size: 0.95rem; }
+            .sidebar .email { font-size: 0.95rem; word-break: normal; }
+            .sidebar .address { font-size: 0.85rem; margin: 0; }
+            .addr-sep { display: inline; }
+            .addr-br { display: none; }
+            .sidebar .btn-quote { display: none; }
             .top-strip { display: none; }
             .mobile-quote-bar { 
                 display: block; 
@@ -163,10 +171,12 @@
     <div class="layout">
     <aside class="sidebar">
         <img src="assets/logo-square.gif" alt="C&C Coatings logo">
-        <p class="tagline">We make metals last longer</p>
-        <p class="phone"><a href="tel:+15193328175">519 332 8175</a></p>
-        <p class="email"><a href="mailto:tom@cccoatings.com">tom@cccoatings.com</a></p>
-        <p class="address">1380 Lougar Ave<br>Sarnia, ON N7S 5N7</p>
+        <div class="side-text">
+            <p class="tagline">We make metals last longer</p>
+            <p class="phone"><a href="tel:+15193328175">519 332 8175</a></p>
+            <p class="email"><a href="mailto:tom@cccoatings.com">tom@cccoatings.com</a></p>
+            <p class="address">1380 Lougar Ave<span class="addr-sep">, </span><br class="addr-br">Sarnia, ON N7S 5N7</p>
+        </div>
         <a class="btn-quote" href="#quote">Get a Quote</a>
     </aside>
     <main class="content">
