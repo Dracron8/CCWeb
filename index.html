@@ -82,6 +82,28 @@
             font-size: 1.3rem; 
             width: 100%; 
         }
+        .quick-quote { 
+            display: none; 
+            max-width: 600px; 
+            margin: 0 auto 2.5rem; 
+            text-align: center; 
+        }
+        .quick-quote a.btn { 
+            display: block; 
+            background: #c8102e; 
+            color: white; 
+            text-decoration: none; 
+            padding: 1.2rem 1rem; 
+            border-radius: 4px; 
+            font-size: 1.3rem; 
+            font-weight: bold; 
+        }
+        .quick-quote p { margin-top: 0.75rem; font-size: 1rem; }
+        .or-divider { display: none; text-align: center; font-weight: bold; margin-bottom: 1rem; }
+        @media (hover: none) and (pointer: coarse) {
+            .quick-quote, .or-divider { display: block; }
+        }
+        .contact-bar a { color: white; text-decoration: none; }
         footer { 
             background: #c8102e; 
             color: white; 
@@ -92,7 +114,7 @@
 </head>
 <body>
     <div class="contact-bar">
-        +1 (519) 332-8175 | tom@cccoatings.com<br>
+        <a href="tel:+15193328175">+1 (519) 332-8175</a> | <a href="mailto:tom@cccoatings.com">tom@cccoatings.com</a><br>
         1380 Lougar Ave, Sarnia, ON N7S 5N7
     </div>
 
@@ -148,6 +170,11 @@
 
     <section id="quote">
         <h2>Get a Quote Fast</h2>
+        <div class="quick-quote">
+            <a class="btn" href="mailto:tom@cccoatings.com?subject=Website%20quick%20quote%20%E2%80%93%20photo%20attached&body=Hi%20C%26C%2C%0A%0AI%27ve%20attached%20a%20photo%20of%20my%20parts.%20I%27m%20looking%20for%20a%20quote%20on%3A%0A%0A">Email us a photo for a quick quote</a>
+            <p>Opens your email app. Attach a photo of your parts and tell us what you need coated.</p>
+        </div>
+        <p class="or-divider">— or fill in the details below —</p>
         <form id="quoteForm">
             <input type="text" id="qName" name="name" placeholder="Your Name" required>
             <input type="email" id="qEmail" name="email" placeholder="Email" required>
@@ -190,7 +217,7 @@
             var email = document.getElementById('qEmail').value.trim();
             var phone = document.getElementById('qPhone').value.trim();
             var details = document.getElementById('qDetails').value.trim();
-            var subject = 'Quote request from ' + name;
+            var subject = 'Website quote request from ' + name;
             var body = 'Name: ' + name + '\n' +
                        'Email: ' + email + '\n' +
                        'Phone: ' + phone + '\n\n' +
