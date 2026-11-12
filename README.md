@@ -20,6 +20,6 @@ Website for **C&C Coatings** — powder coating and PTFE/fluoropolymer non-stick
 
 ## To do
 
-- [ ] Quote form doesn't actually send anything (it only shows an alert) — hook it up to a form service (e.g. Formspree/Netlify Forms) or a mailto fallback
+- [x] Quote form: opens the visitor's email app with the request pre-filled (mailto). Upgrade to a form service (e.g. Formspree) if you want submissions delivered without relying on the visitor's mail app
 - [ ] Replace stock photos with real photos of C&C's shop and finished work
 - [ ] Hosting: moving to GitHub Pages — see `docs/hosting-migration.md` for the step-by-step (repo must be public, Pages source = GitHub Actions, DNS moves to GoDaddy)

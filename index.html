@@ -149,11 +149,16 @@
     <section id="quote">
         <h2>Get a Quote Fast</h2>
         <form id="quoteForm">
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Email" required>
-            <input type="tel" placeholder="Phone" value="+1 (519)">
-            <textarea placeholder="Tell us about your parts (rims, bakeware, industrial, etc.)" rows="4" required></textarea>
+            <input type="text" id="qName" name="name" placeholder="Your Name" required>
+            <input type="email" id="qEmail" name="email" placeholder="Email" required>
+            <input type="tel" id="qPhone" name="phone" placeholder="Phone" value="+1 (519)">
+            <textarea id="qDetails" name="details" placeholder="Tell us about your parts (rims, bakeware, industrial, etc.)" rows="4" required></textarea>
             <button type="submit">Send Quote Request</button>
+            <p id="quoteNote" style="text-align:center; margin-top:1rem; font-size:1rem;">
+                This opens your email app with the request filled in. Or email
+                <a href="mailto:tom@cccoatings.com" style="color:#c8102e;">tom@cccoatings.com</a>
+                or call <a href="tel:+15193328175" style="color:#c8102e;">(519) 332-8175</a>.
+            </p>
         </form>
     </section>
 
@@ -178,9 +183,23 @@
             if (attempt && attempt.catch) attempt.catch(function () { /* autoplay blocked: show first frame */ });
         })();
 
-        document.getElementById('quoteForm').addEventListener('submit', function(e) {
+        // Quote form: builds an email to tom@cccoatings.com and opens the visitor's mail app.
+        document.getElementById('quoteForm').addEventListener('submit', function (e) {
             e.preventDefault();
-            alert('Quote request sent to tom@cccoatings.com. We will contact you shortly!');
+            var name = document.getElementById('qName').value.trim();
+            var email = document.getElementById('qEmail').value.trim();
+            var phone = document.getElementById('qPhone').value.trim();
+            var details = document.getElementById('qDetails').value.trim();
+            var subject = 'Quote request from ' + name;
+            var body = 'Name: ' + name + '\n' +
+                       'Email: ' + email + '\n' +
+                       'Phone: ' + phone + '\n\n' +
+                       'Parts / details:\n' + details + '\n';
+            window.location.href = 'mailto:tom@cccoatings.com' +
+                '?subject=' + encodeURIComponent(subject) +
+                '&body=' + encodeURIComponent(body);
+            document.getElementById('quoteNote').textContent =
+                'Your email app should now be open with the request. If it did not open, email tom@cccoatings.com or call (519) 332-8175.';
         });
     </script>
 </body>
