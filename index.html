@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="C&C Coatings, Sarnia, Ontario: industrial PTFE non-stick and release coatings (the coating most people know as Teflon), Halar ECTFE chemical-resistant coatings, low-friction coatings, and powder coating. 20+ years in Chemical Valley.">
-    <title>C&C Coatings | PTFE Non-Stick, Release & Industrial Coatings | Sarnia, ON</title>
+    <meta name="description" content="C&C Coatings, Sarnia, Ontario: industrial Teflon and PTFE non-stick and release coatings, Halar ECTFE chemical-resistant coatings, low-friction coatings, sandblasting and powder coating. 20+ years in Chemical Valley.">
+    <title>C&C Coatings | Teflon &amp; PTFE Non-Stick, Release &amp; Industrial Coatings | Sarnia, ON</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
@@ -76,6 +76,7 @@
             padding: 1rem; 
             border-radius: 4px; 
         }
+        .sidebar .hours { font-size: 1rem; margin-top: 1rem; opacity: 0.95; }
         .content { flex: 1; min-width: 0; }
         .top-strip { 
             background: #c8102e; 
@@ -86,7 +87,7 @@
             justify-content: center; 
             padding: 0.6rem 1rem; 
         }
-        .top-strip p { font-size: 1.02rem; font-weight: bold; text-align: center; letter-spacing: 0.02em; }
+        .top-strip p { font-size: 0.92rem; font-weight: bold; text-align: center; letter-spacing: 0.02em; }
         .hero p.subline { display: none; }
         /* Right-hand colour strip: pinned like the sidebar, contents move with page scroll */
         .colour-strip { 
@@ -119,6 +120,22 @@
         .colour-strip button.ral-bar span { opacity: 0.6; }
         .colour-strip button.ral-bar:hover span, .colour-strip button.ral-bar.selected span { opacity: 1; font-weight: bold; }
         .colour-strip button.ral-bar.selected { outline: 3px solid #1a2a44; outline-offset: -3px; }
+        .colour-toast { 
+            position: fixed; 
+            left: 50%; 
+            bottom: 5.5rem; 
+            transform: translateX(-50%); 
+            background: #1a2a44; 
+            color: #fff; 
+            padding: 0.6rem 1rem; 
+            border-radius: 999px; 
+            font-size: 0.95rem; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3); 
+            z-index: 20; 
+            white-space: nowrap; 
+        }
+        .colour-toast[hidden] { display: none; }
+        @media (min-width: 900px) { .colour-toast { bottom: 1.5rem; } }
         .mobile-quote-bar { display: none; }
         @media (max-width: 899px) {
             .layout { display: block; }
@@ -135,12 +152,23 @@
             .sidebar .address { font-size: 0.85rem; margin: 0; }
             .addr-sep { display: inline; }
             .addr-br { display: none; }
-            .sidebar .btn-quote { display: none; }
+            .sidebar .btn-quote, .sidebar .hours { display: none; }
             .top-strip { display: none; }
             .hero p.subline { display: block; }
             .hero .hero-title { order: -2; }
             .hero p.subline { order: -1; }
-            .colour-strip { display: none; }
+            .colour-strip { 
+                display: block; 
+                position: fixed; 
+                top: 0; right: 0; 
+                height: calc(100vh - 4.2rem); 
+                width: 18px; 
+                border-left: none; 
+                z-index: 9; 
+            }
+            .colour-strip button.ral-bar { height: 28px; padding: 0; }
+            .colour-strip button.ral-bar span { display: none; }
+            .content, .sidebar { padding-right: 18px; }
             main #services .services-grid { grid-template-columns: 1fr; }
             main #services .card, main #services .card:nth-child(4) { grid-column: auto; }
             .hero { padding: 0.75rem 1rem 0.5rem; }
@@ -258,9 +286,10 @@
             <p class="address">1380 Lougar Ave<span class="addr-sep">, </span><br class="addr-br">Sarnia, ON N7S 5N7</p>
         </div>
         <a class="btn-quote" href="#quote">Get a Quote</a>
+        <p class="hours">Mon–Fri 8:30 am – 4:30 pm</p>
     </aside>
     <main class="content">
-    <div class="top-strip"><p>PTFE Non-Stick • Release • Halar® • Low-Friction • Sandblasting • Powder Coating • 20+ Years in Sarnia Chemical Valley</p></div>
+    <div class="top-strip"><p>Teflon™ &amp; PTFE Non-Stick • Release • Halar® • Low-Friction • Sandblasting • Powder Coating • 20+ Years in Sarnia Chemical Valley</p></div>
 
     <section class="hero">
         <div class="video-wrap">
@@ -268,12 +297,12 @@
             <button type="button" id="replayBtn" class="replay-btn" aria-label="Replay video" hidden>&#8635; Replay</button>
         </div>
         <h2 class="hero-title" style="font-size:2.2rem; color:#c8102e;">Industrial Non-Stick, Release & Powder Coatings</h2>
-        <p class="subline" style="font-size:1.4rem; margin-bottom:1.5rem;">PTFE Non-Stick • Release • Halar® • Low-Friction • Sandblasting • Powder • 20+ Years in Sarnia Chemical Valley</p>
+        <p class="subline" style="font-size:1.4rem; margin-bottom:1.5rem;">Teflon™ &amp; PTFE Non-Stick • Release • Halar® • Low-Friction • Sandblasting • Powder • 20+ Years in Sarnia Chemical Valley</p>
     </section>
 
     <section id="nonstick">
         <h2>Non-Stick &amp; Release Coatings</h2>
-        <p class="lead">Our core business. PTFE fluoropolymer non-stick, the coating most people know as Teflon, applied to industrial and commercial parts that need easy release, quick cleanup and long service life.</p>
+        <p class="lead">Our core business. Teflon™ and PTFE fluoropolymer non-stick coatings, applied to industrial and commercial parts that need easy release, quick cleanup and long service life.</p>
         <div class="services-grid">
             <div class="card">
                 <h3>What we coat</h3>
@@ -316,8 +345,8 @@
         <h2>Services</h2>
         <div class="services-grid">
             <div class="card">
-                <h3>PTFE / Fluoropolymer Non-Stick</h3>
-                <p>Non-stick and release coatings for bakeware, pizza trays, commercial kitchen and food equipment, moulds and industrial parts.</p>
+                <h3>Teflon™ / PTFE Non-Stick</h3>
+                <p>Teflon™, PTFE and other fluoropolymer non-stick and release coatings for bakeware, pizza trays, commercial kitchen and food equipment, moulds and industrial parts.</p>
             </div>
             <div class="card">
                 <h3>Halar® (ECTFE)</h3>
@@ -361,7 +390,7 @@
 
     <footer>
         <p>C&C Coatings • 1380 Lougar Ave, Sarnia, ON N7S 5N7 • (519) 332-8175 • tom@cccoatings.com</p>
-        <p>20+ Years Serving Southern Ontario</p>
+        <p>Mon–Fri 8:30 am – 4:30 pm • 20+ Years Serving Southern Ontario</p>
     </footer>
     </main>
     <aside class="colour-strip" id="colourStrip" aria-label="RAL colour options">
@@ -410,6 +439,7 @@
     </aside>
     </div>
     <a class="mobile-quote-bar" href="#quote">Get a Quote</a>
+    <div id="colourToast" class="colour-toast" role="status" aria-live="polite" hidden></div>
 
     <script>
         // Intro video: plays once on page load / refresh, stops at 8.5 seconds.
@@ -466,6 +496,13 @@
                     details.value = line + (cleaned ? '\n' + cleaned : '\n');
                 }
                 if (quick && quickBase) quick.setAttribute('href', quickBase + encodeURIComponent(line + '\n'));
+                var toast = document.getElementById('colourToast');
+                if (toast) {
+                    toast.textContent = bar.getAttribute('data-ral') + ' added to your quote';
+                    toast.hidden = false;
+                    clearTimeout(toast._t);
+                    toast._t = setTimeout(function () { toast.hidden = true; }, 2500);
+                }
                 document.getElementById('quote').scrollIntoView({ behavior: 'smooth' });
             });
         })();
