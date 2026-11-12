@@ -9,7 +9,7 @@ Website for **C&C Coatings** — powder coating and PTFE/fluoropolymer non-stick
 ## Structure
 
 - `index.html` — the site (single page, no build step; just open it in a browser)
-- `assets/` — logos and photos used by the page
+- `assets/` — logos and photos used by the page; `assets/video/black-white.mp4` is the 8.5 s intro clip (trimmed from BLACK WHITE.mp4)
 - `reference/` — source material, not part of the live site:
   - `old-site-snapshot.mhtml` — saved copy of the previous website
   - `old-site-images/` — images extracted from the old site
