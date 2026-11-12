@@ -34,6 +34,15 @@
             text-align: center; 
             padding: 3rem 1rem; 
         }
+        .intro-video { 
+            display: block; 
+            width: 100%; 
+            max-width: 900px; 
+            margin: 0 auto 2rem; 
+            border: 3px solid #c8102e; 
+            border-radius: 8px; 
+            background: #000; 
+        }
         section { 
             padding: 3rem 1rem; 
             max-width: 1200px; 
@@ -92,6 +101,7 @@
     </header>
 
     <section class="hero">
+        <video id="introVideo" class="intro-video" src="assets/video/black-white.mp4" muted autoplay playsinline preload="auto" aria-label="C&C Coatings powder coating in action"></video>
         <h2 style="font-size:2.2rem; color:#c8102e;">Durable Powder & Non-Stick Finishes</h2>
         <p style="font-size:1.4rem;">Automotive • Industrial • Bakeware • 20+ Years in Sarnia Chemical Valley</p>
         <a href="#quote"><button>Request Quote Now</button></a>
@@ -153,6 +163,22 @@
     </footer>
 
     <script>
+        // Intro video: plays once on page load / refresh, stops at 8.5 seconds.
+        (function () {
+            var video = document.getElementById('introVideo');
+            if (!video) return;
+            var STOP_AT = 8.5;
+            video.loop = false;
+            video.addEventListener('timeupdate', function () {
+                if (video.currentTime >= STOP_AT) {
+                    video.pause();
+                    video.currentTime = STOP_AT;
+                }
+            });
+            var attempt = video.play();
+            if (attempt && attempt.catch) attempt.catch(function () { /* autoplay blocked: show first frame */ });
+        })();
+
         document.getElementById('quoteForm').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('Quote request sent to tom@cccoatings.com. We will contact you shortly!');
