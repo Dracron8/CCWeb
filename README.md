@@ -9,6 +9,9 @@ Website for **C&C Coatings** — powder coating and PTFE/fluoropolymer non-stick
 ## Structure
 
 - `index.html` — the site (single page, no build step; just open it in a browser)
+- `CNAME`, `.nojekyll` — GitHub Pages custom-domain config
+- `.github/workflows/pages.yml` — publishes `index.html` + `assets/` to GitHub Pages on every push to `main`
+- `docs/hosting-migration.md` — runbook for moving off the old host
 - `assets/` — logos and photos used by the page; `assets/video/black-white.mp4` is the 8.5 s intro clip (trimmed from BLACK WHITE.mp4)
 - `reference/` — source material, not part of the live site:
   - `old-site-snapshot.mhtml` — saved copy of the previous website
@@ -19,4 +22,4 @@ Website for **C&C Coatings** — powder coating and PTFE/fluoropolymer non-stick
 
 - [ ] Quote form doesn't actually send anything (it only shows an alert) — hook it up to a form service (e.g. Formspree/Netlify Forms) or a mailto fallback
 - [ ] Replace stock photos with real photos of C&C's shop and finished work
-- [ ] Decide on hosting (GitHub Pages works for a static page like this)
+- [ ] Hosting: moving to GitHub Pages — see `docs/hosting-migration.md` for the step-by-step (repo must be public, Pages source = GitHub Actions, DNS moves to GoDaddy)
