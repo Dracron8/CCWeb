@@ -28,7 +28,7 @@ jobs:
       - name: Stage only the public site files
         run: |
           mkdir -p _site
-          cp index.html 404.html .nojekyll CNAME _site/
+          cp index.html 404.html .nojekyll CNAME robots.txt sitemap.xml _site/
           cp -r assets _site/assets
 
       - uses: actions/configure-pages@v5
