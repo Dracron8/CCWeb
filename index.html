@@ -373,9 +373,10 @@
         }
         .services-grid, .gallery { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); /* cards never wider than the screen */ 
             gap: 1.5rem; 
         }
+        .services-grid .card { margin-bottom: 0; } /* the grid gap is the spacing; no double gap */
         .gallery img { width: 100%; height: auto; border-radius: 8px; border: 3px solid #c8102e; }
         form { max-width: 600px; margin: auto; }
         input, textarea { 
