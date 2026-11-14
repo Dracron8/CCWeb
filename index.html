@@ -34,6 +34,23 @@
         }
         .coat-list li::before { content: "\2022"; font-size: 0.6em; margin-right: 0.55em; vertical-align: middle; }
         .video-wrap { position: relative; display: inline-block; max-width: 100%; line-height: 0; }
+        .coat-list li { cursor: default; transition: color 0.15s; }
+        .coat-list li:hover, .coat-list li:focus, .coat-list li.active { color: #c8102e; outline: none; }
+        .coat-panel { 
+            position: absolute; inset: 0; 
+            background: #ffffff; 
+            border: 3px solid #c8102e; border-radius: 8px; 
+            padding: 2rem 2.2rem; 
+            line-height: 1.5; text-align: left; 
+            display: flex; flex-direction: column; justify-content: center; gap: 0.8rem; 
+            z-index: 3; 
+        }
+        .coat-panel[hidden] { display: none; }
+        .coat-panel h3 { color: #c8102e; font-size: 2.2rem; line-height: 1.1; margin: 0; }
+        .coat-panel p { font-size: 1.25rem; color: #1a2a44; margin: 0 0 0.6rem; }
+        .coat-panel dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; column-gap: 1.2rem; row-gap: 0.7rem; }
+        .coat-panel dt { font-weight: bold; color: #1a2a44; font-size: 1.1rem; }
+        .coat-panel dd { margin: 0; font-size: 1.1rem; color: #1a2a44; }
         .replay-btn { 
             position: absolute; 
             right: 14px; 
@@ -315,21 +332,30 @@
 
     <section class="hero">
         <div class="hero-row">
-        <ul class="coat-list coat-left" aria-label="Fluoropolymer coatings">
-            <li>PTFE</li>
-            <li>FEP</li>
-            <li>PFA</li>
-            <li>ETFE</li>
+        <ul class="coat-list coat-left" aria-label="Fluoropolymer coatings" id="coatLeft">
+            <li tabindex="0" data-coat="PTFE">PTFE</li>
+            <li tabindex="0" data-coat="FEP">FEP</li>
+            <li tabindex="0" data-coat="PFA">PFA</li>
+            <li tabindex="0" data-coat="ETFE">ETFE</li>
         </ul>
         <div class="video-wrap">
             <video id="introVideo" class="intro-video" src="assets/video/black-white.mp4" muted autoplay playsinline preload="auto" aria-label="C&C Coatings coating in action"></video>
             <button type="button" id="replayBtn" class="replay-btn" aria-label="Replay video" hidden>&#8635; Replay</button>
+            <div id="coatPanel" class="coat-panel" role="region" aria-live="polite" hidden>
+                <h3 id="coatTitle"></h3>
+                <p id="coatName"></p>
+                <dl>
+                    <dt>Max continuous temperature</dt><dd id="coatTemp"></dd>
+                    <dt>Strength</dt><dd id="coatPlus"></dd>
+                    <dt>Weakness</dt><dd id="coatMinus"></dd>
+                </dl>
+            </div>
         </div>
-        <ul class="coat-list coat-right" aria-label="Industrial coatings">
-            <li>HALAR</li>
-            <li>FBE</li>
-            <li>PVDF</li>
-            <li>ECTFE</li>
+        <ul class="coat-list coat-right" aria-label="Industrial coatings" id="coatRight">
+            <li tabindex="0" data-coat="HALAR">HALAR</li>
+            <li tabindex="0" data-coat="FBE">FBE</li>
+            <li tabindex="0" data-coat="PVDF">PVDF</li>
+            <li tabindex="0" data-coat="ECTFE">ECTFE</li>
         </ul>
         </div>
         <h2 class="hero-title" style="font-size:2.2rem; color:#c8102e;">Industrial Non-Stick, Release & Powder Coatings</h2>
@@ -500,6 +526,45 @@
             });
             var attempt = video.play();
             if (attempt && attempt.catch) attempt.catch(function () { showReplay('Play'); });
+        })();
+
+        // Coating words: hovering (or focusing) one shows its details over the video box
+        (function () {
+            var INFO = {
+                PTFE:  { title: 'PTFE', name: 'Polytetrafluoroethylene', temp: 'about 260 °C / 500 °F', plus: 'Lowest friction and best non-stick of any coating; near-universal chemical resistance', minus: 'Soft; wears under abrasion' },
+                FEP:   { title: 'FEP', name: 'Fluorinated ethylene propylene', temp: 'about 200 °C / 400 °F', plus: 'Melts to a smooth, pinhole-free non-stick film', minus: 'Lower temperature limit than PTFE' },
+                PFA:   { title: 'PFA', name: 'Perfluoroalkoxy', temp: 'about 260 °C / 500 °F', plus: 'PTFE’s heat and chemical resistance in a thicker, pinhole-free film', minus: 'Most expensive of the fluoropolymers' },
+                ETFE:  { title: 'ETFE', name: 'Ethylene tetrafluoroethylene', temp: 'about 150 °C / 300 °F', plus: 'Toughest fluoropolymer; best abrasion and impact resistance', minus: 'Less non-stick than PTFE' },
+                HALAR: { title: 'Halar®', name: 'Halar® is Solvay’s brand of ECTFE, ethylene chlorotrifluoroethylene', temp: 'about 150 °C / 300 °F', plus: 'Outstanding chemical and permeation barrier; thick pinhole-free builds', minus: 'Not a true non-stick surface' },
+                FBE:   { title: 'FBE', name: 'Fusion-bonded epoxy', temp: 'about 100 °C / 210 °F', plus: 'Excellent corrosion protection and adhesion on steel; economical', minus: 'Chalks in sunlight; limited heat' },
+                PVDF:  { title: 'PVDF (Kynar®)', name: 'Polyvinylidene fluoride', temp: 'about 150 °C / 300 °F', plus: 'Hard, weather and UV resistant; strong acid resistance', minus: 'Attacked by strong bases and ketones' },
+                ECTFE: { title: 'ECTFE', name: 'Ethylene chlorotrifluoroethylene, sold as Halar®', temp: 'about 150 °C / 300 °F', plus: 'Outstanding chemical and permeation barrier; thick pinhole-free builds', minus: 'Not a true non-stick surface' }
+            };
+            var panel = document.getElementById('coatPanel');
+            if (!panel) return;
+            var words = document.querySelectorAll('.coat-list li[data-coat]');
+            var current = null;
+            function show(li) {
+                var d = INFO[li.getAttribute('data-coat')];
+                if (!d) return;
+                document.getElementById('coatTitle').textContent = d.title;
+                document.getElementById('coatName').textContent = d.name;
+                document.getElementById('coatTemp').textContent = d.temp;
+                document.getElementById('coatPlus').textContent = d.plus;
+                document.getElementById('coatMinus').textContent = d.minus;
+                if (current) current.classList.remove('active');
+                current = li; li.classList.add('active');
+                panel.hidden = false;
+            }
+            function hide() { if (current) current.classList.remove('active'); current = null; panel.hidden = true; }
+            words.forEach(function (li) {
+                li.addEventListener('mouseenter', function () { show(li); });
+                li.addEventListener('mouseleave', hide);
+                li.addEventListener('focus', function () { show(li); });
+                li.addEventListener('blur', hide);
+                li.addEventListener('click', function () { if (panel.hidden || current !== li) show(li); else hide(); });
+            });
+            document.addEventListener('keydown', function (e) { if (e.key === 'Escape') hide(); });
         })();
 
         // Colour strip: contents move only when the page scrolls; clicking a bar adds it to the quote
