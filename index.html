@@ -25,6 +25,15 @@
         }
         .hero { text-align: center; padding: 1.5rem 1rem 1rem; display: flex; flex-direction: column; align-items: center; }
         .hero .hero-title { margin: 0; }
+        .hero-row { display: flex; align-items: stretch; justify-content: center; gap: 2.5rem; width: 100%; }
+        .coat-list { 
+            list-style: none; margin: 0; padding: 0.5rem 0; 
+            display: flex; flex-direction: column; justify-content: space-evenly; 
+            font-size: 1.7rem; font-weight: bold; letter-spacing: 0.08em; color: #c8102e; 
+            min-width: 6.5rem; 
+        }
+        .coat-left { text-align: right; }
+        .coat-right { text-align: left; }
         .video-wrap { position: relative; display: inline-block; max-width: 100%; line-height: 0; }
         .replay-btn { 
             position: absolute; 
@@ -166,6 +175,8 @@
             .top-strip { display: none; }
             .hero p.subline { display: block; }
             .hero .hero-title { order: -2; }
+            .coat-list { display: none; }
+            .hero-row { display: block; }
             .hero p.subline { order: -1; }
             .layout { position: relative; }
             .colour-strip { 
@@ -304,9 +315,23 @@
     <div class="top-strip"><p>Teflon™ &amp; PTFE Non-Stick • Release • Halar® • Low-Friction • Sandblasting • Powder Coating • 20+ Years in Sarnia Chemical Valley</p></div>
 
     <section class="hero">
+        <div class="hero-row">
+        <ul class="coat-list coat-left" aria-label="Fluoropolymer coatings">
+            <li>PTFE</li>
+            <li>FEP</li>
+            <li>PFA</li>
+            <li>ETFE</li>
+        </ul>
         <div class="video-wrap">
             <video id="introVideo" class="intro-video" src="assets/video/black-white.mp4" muted autoplay playsinline preload="auto" aria-label="C&C Coatings coating in action"></video>
             <button type="button" id="replayBtn" class="replay-btn" aria-label="Replay video" hidden>&#8635; Replay</button>
+        </div>
+        <ul class="coat-list coat-right" aria-label="Industrial coatings">
+            <li>HALAR</li>
+            <li>FBE</li>
+            <li>ETFE</li>
+            <li>PVDF</li>
+        </ul>
         </div>
         <h2 class="hero-title" style="font-size:2.2rem; color:#c8102e;">Industrial Non-Stick, Release & Powder Coatings</h2>
         <p class="subline" style="font-size:1.4rem; margin-bottom:1.5rem;">Teflon™ &amp; PTFE Non-Stick • Release • Halar® • Low-Friction • Sandblasting • Powder • 20+ Years in Sarnia Chemical Valley</p>
