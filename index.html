@@ -325,6 +325,7 @@
             }
             .colour-strip button.ral-bar { height: 28px; padding: 0; }
             .colour-strip button.ral-bar span { display: none; }
+            .coat-panel { bottom: auto; min-height: 100%; } /* on a tiny phone the card may extend below the video box rather than shrink the text */
             .content { padding-right: 18px; }
             main #services .services-grid { grid-template-columns: 1fr; }
             main #services .card, main #services .card:nth-child(4) { grid-column: auto; }
@@ -692,9 +693,10 @@
             var panel = document.getElementById('coatPanel');
             if (!panel) return;
             var wrap = panel.parentElement;
+            var noCards = window.matchMedia('(max-width: 899px)'); // phones: tap instead of hover
             var words = document.querySelectorAll('.coat-list li[data-coat]');
             var current = null;
-            function fit() { panel.style.fontSize = Math.max(9, wrap.clientWidth / 31) + 'px'; }
+            function fit() { panel.style.fontSize = (noCards.matches ? Math.max(11, wrap.clientWidth / 25) : Math.max(9, wrap.clientWidth / 31)) + 'px'; }
             window.addEventListener('resize', fit);
             function show(li) {
                 var d = INFO[li.getAttribute('data-coat')];
@@ -710,15 +712,16 @@
                 panel.hidden = false;
             }
             function hide() { if (current) current.classList.remove('active'); current = null; panel.hidden = true; }
-            var noCards = window.matchMedia('(max-width: 899px)');
             words.forEach(function (li) {
                 li.addEventListener('mouseenter', function () { if (!noCards.matches) show(li); });
-                li.addEventListener('mouseleave', hide);
+                li.addEventListener('mouseleave', function () { if (!noCards.matches) hide(); });
                 li.addEventListener('focus', function () { if (!noCards.matches) show(li); });
-                li.addEventListener('blur', hide);
-                li.addEventListener('click', function () { if (noCards.matches) return; if (panel.hidden || current !== li) show(li); else hide(); });
+                li.addEventListener('blur', function () { if (!noCards.matches) hide(); });
+                li.addEventListener('click', function (e) { e.stopPropagation(); if (panel.hidden || current !== li) show(li); else hide(); });
             });
             document.addEventListener('keydown', function (e) { if (e.key === 'Escape') hide(); });
+            document.addEventListener('click', function (e) { if (!panel.hidden && !panel.contains(e.target)) hide(); }); // tap anywhere else closes it
+            panel.addEventListener('click', hide);
         })();
 
         // Colour strip: contents move only when the page scrolls; clicking a bar adds it to the quote
