@@ -167,15 +167,16 @@
             .hero p.subline { display: block; }
             .hero .hero-title { order: -2; }
             .hero p.subline { order: -1; }
+            .layout { position: relative; }
             .colour-strip { 
                 display: block; 
-                position: fixed; 
-                top: 0; right: 0; bottom: 4.2rem; 
+                position: absolute; 
+                top: 0; right: 0; bottom: 0; 
                 height: auto; 
                 align-self: auto; 
                 width: 18px; 
                 border-left: none; 
-                z-index: 9; 
+                z-index: 1; 
             }
             .colour-strip button.ral-bar { height: 28px; padding: 0; }
             .colour-strip button.ral-bar span { display: none; }
@@ -486,14 +487,34 @@
             var quick = document.querySelector('.quick-quote a.btn');
             var quickBase = quick ? quick.getAttribute('href') : null;
             var phoneQuery = window.matchMedia('(max-width: 899px)');
+            var header = document.querySelector('.sidebar');
+            var baseBars = Array.prototype.slice.call(inner.querySelectorAll('.ral-bar'));
             var pageMax = 0, stripMax = 0;
+            function layoutPhone() {
+                // Phone: the ribbon is ordinary page content down the right edge. It starts at the
+                // bottom of the red header, runs to the end of the page, and scrolls with the page.
+                // The colour set repeats so it reaches the footer.
+                strip.style.top = header ? header.offsetHeight + 'px' : '';
+                var need = strip.clientHeight, have = inner.scrollHeight, i = 0;
+                while (have < need && i < 20) {
+                    baseBars.forEach(function (b) { inner.appendChild(b.cloneNode(true)); });
+                    have = inner.scrollHeight; i++;
+                }
+                inner.style.transform = 'none';
+            }
+            function layoutDesktop() {
+                strip.style.top = '';
+                var extra = inner.querySelectorAll('.ral-bar');
+                for (var i = extra.length - 1; i >= baseBars.length; i--) extra[i].remove();
+            }
             function measure() {
+                if (phoneQuery.matches) { layoutPhone(); return; }
+                layoutDesktop();
                 pageMax = document.documentElement.scrollHeight - window.innerHeight;
                 stripMax = inner.scrollHeight - strip.clientHeight;
             }
             function sync() {
-                // The ribbon box itself never moves. On phones the red header is layered above it,
-                // so the ribbon appears to start under the header and fill upward as the header scrolls off.
+                if (phoneQuery.matches) return;
                 if (pageMax <= 0 || stripMax <= 0) { inner.style.transform = 'none'; return; }
                 var f = Math.min(1, Math.max(0, window.scrollY / pageMax));
                 inner.style.transform = 'translate3d(0,' + (-f * stripMax) + 'px,0)';
