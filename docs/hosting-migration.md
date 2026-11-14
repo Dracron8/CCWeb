@@ -1,5 +1,12 @@
 # Moving cccoatings.com off Abstract Web Host onto GitHub Pages
 
+> **Status (2026-11-14): done.** cccoatings.com is live on GitHub Pages with HTTPS.
+> The plan below was written for GoDaddy DNS; in practice DNS went to **Cloudflare**
+> (Abstract Marketing switched the nameservers on 2026-11-12 at Tom's request), and the
+> site records were changed there by API on 2026-11-14. Mail records were not touched.
+> Still open: the domain registration moving from Abstract's GoDaddy account to Tom's,
+> and cancelling Abstract's hosting after that. Kept for the record.
+
 Snapshot of the current setup, taken 2026-09-12 from public records:
 
 | Item | Current value |
