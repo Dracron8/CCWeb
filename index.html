@@ -36,21 +36,25 @@
         .video-wrap { position: relative; display: inline-block; max-width: 100%; line-height: 0; }
         .coat-list li { cursor: default; transition: color 0.15s; }
         .coat-list li:hover, .coat-list li:focus, .coat-list li.active { color: #c8102e; outline: none; }
+        /* Panel text is sized from the video box width (set as the panel's font-size by script), so it fits at any zoom */
         .coat-panel { 
             position: absolute; inset: 0; 
             background: #ffffff; 
             border: 3px solid #c8102e; border-radius: 8px; 
-            padding: 2rem 2.2rem; 
-            line-height: 1.5; text-align: left; 
-            display: flex; flex-direction: column; justify-content: center; gap: 0.8rem; 
+            padding: 1.3em 1.6em; 
+            box-sizing: border-box; 
+            overflow: hidden; 
+            font-size: 16px; 
+            line-height: 1.4; text-align: left; 
+            display: flex; flex-direction: column; justify-content: center; gap: 0.75em; 
             z-index: 3; 
         }
         .coat-panel[hidden] { display: none; }
-        .coat-panel h3 { color: #c8102e; font-size: 3rem; line-height: 1.1; margin: 0; text-align: center; }
-        .coat-panel p { font-size: 1.25rem; color: #1a2a44; margin: 0 0 0.8rem; text-align: center; }
-        .coat-panel dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; column-gap: 1.2rem; row-gap: 0.7rem; }
-        .coat-panel dt { font-weight: bold; color: #1a2a44; font-size: 1.1rem; }
-        .coat-panel dd { margin: 0; font-size: 1.1rem; color: #1a2a44; }
+        .coat-panel h3 { color: #c8102e; font-size: 2.6em; line-height: 1.1; margin: 0; text-align: center; }
+        .coat-panel p { font-size: 1.12em; color: #1a2a44; margin: 0 0 0.3em; text-align: center; }
+        .coat-panel dl { margin: 0; display: grid; grid-template-columns: 38% 1fr; column-gap: 1em; row-gap: 0.65em; }
+        .coat-panel dt { font-weight: bold; color: #1a2a44; font-size: 1em; }
+        .coat-panel dd { margin: 0; font-size: 1em; color: #1a2a44; }
         .replay-btn { 
             position: absolute; 
             right: 14px; 
@@ -542,11 +546,15 @@
             };
             var panel = document.getElementById('coatPanel');
             if (!panel) return;
+            var wrap = panel.parentElement;
             var words = document.querySelectorAll('.coat-list li[data-coat]');
             var current = null;
+            function fit() { panel.style.fontSize = Math.max(9, wrap.clientWidth / 31) + 'px'; }
+            window.addEventListener('resize', fit);
             function show(li) {
                 var d = INFO[li.getAttribute('data-coat')];
                 if (!d) return;
+                fit();
                 document.getElementById('coatTitle').textContent = d.title;
                 document.getElementById('coatName').textContent = d.name;
                 document.getElementById('coatTemp').textContent = d.temp;
