@@ -51,7 +51,7 @@ tags mark approved versions if you ever need to go back.
 
 ## To do
 
-- [ ] Sandblast & Prep card still uses a stock photo; swap in a real photo of blasting when Tom sends it (spray booth, oven and shop gallery photos went live 2026-11-16)
+- [ ] Optional: a real sandblasting photo for the Sandblast & Prep card (it currently shows prepped parts hung in the booth). All other photos are C&C's own as of 2026-11-16
 - [ ] Domain transfer: Abstract Marketing unlocked cccoatings.com and sent the transfer (EPP) code on 2026-11-16 (kept in Tom's email, not here). Transfer submitted in Cloudflare 2026-11-16 (status: Pending Transfer, waiting for GoDaddy release, up to 7 days unless Lance approves); registrant contact info is updated only after the transfer completes (changing it first triggers a 60-day transfer lock)
 - [ ] After the transfer, decline the Abstract Marketing hosting renewal (end of December)
 - [ ] Optional: trim the SPF record in Cloudflare to `v=spf1 include:_spf.google.com ~all` (drops the old host's server)
