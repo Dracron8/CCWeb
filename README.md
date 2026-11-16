@@ -15,7 +15,7 @@ Halar® ECTFE, low-friction fluoropolymers, sandblasting and powder coating.
 | Site files | this repo, `main` branch | every push to `main` deploys automatically |
 | Hosting | GitHub Pages | free; `.github/workflows/pages.yml` publishes `index.html`, `404.html`, `assets/`, `CNAME`, `robots.txt`, `sitemap.xml` |
 | DNS | Cloudflare (account: tom@cccoatings.com) | A/AAAA records point at GitHub Pages, "DNS only" (grey cloud); MX/SPF/DMARC for Google Workspace mail are unchanged |
-| Domain registration | GoDaddy, currently in Abstract Marketing's account | transfer into Tom's GoDaddy account requested Nov 2026; paid up to 2027-04-27 |
+| Domain registration | GoDaddy, currently in Abstract Marketing's account | transferring to Cloudflare Registrar (Tom's Cloudflare account, same one as DNS); decided 2026-11-16; paid up to 2027-04-27 |
 | Email | Google Workspace | nothing on the web host; not affected by the site |
 | HTTPS | GitHub-issued certificate, "Enforce HTTPS" on | automatic renewal |
 
@@ -52,7 +52,7 @@ tags mark approved versions if you ever need to go back.
 ## To do
 
 - [ ] Replace the three stock process photos with real photos of C&C's shop and finished work
-- [ ] Domain transfer: Abstract Marketing unlocked cccoatings.com and sent the transfer (EPP) code on 2026-11-16 (kept in Tom's email, not here). Tom initiates the transfer at the receiving registrar; registrant contact info is updated only after the transfer completes (changing it first triggers a 60-day transfer lock)
+- [ ] Domain transfer: Abstract Marketing unlocked cccoatings.com and sent the transfer (EPP) code on 2026-11-16 (kept in Tom's email, not here). Tom initiates the transfer in Cloudflare (Domain Registration → Transfer Domains); registrant contact info is updated only after the transfer completes (changing it first triggers a 60-day transfer lock)
 - [ ] After the transfer, decline the Abstract Marketing hosting renewal (end of December)
 - [ ] Optional: trim the SPF record in Cloudflare to `v=spf1 include:_spf.google.com ~all` (drops the old host's server)
 - [ ] Optional: one page per service (Teflon/PTFE, Halar, sandblasting, powder) for better search ranking
