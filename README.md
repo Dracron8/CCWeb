@@ -33,7 +33,7 @@ tags mark approved versions if you ever need to go back.
 - `404.html` — shown for old URLs from the previous site; sends visitors to the home page
 - `robots.txt`, `sitemap.xml` — search-engine hints (sitemap is submitted in Google Search Console)
 - `CNAME`, `.nojekyll` — GitHub Pages custom-domain config
-- `assets/` — logos, photos, favicons; `assets/video/black-white.mp4` is the 8.5 s intro clip (trimmed from BLACK WHITE.mp4)
+- `assets/` — logos, shop photos (`shop-*.jpg`, cropped 4:3 at 1200×900 from Tom's phone photos), favicons; `assets/video/black-white.mp4` is the 8.5 s intro clip (trimmed from BLACK WHITE.mp4)
 - `reference/` — source material, not part of the live site:
   - `old-site-snapshot.mhtml` — saved copy of the previous website
   - `old-site-images/` — images extracted from the old site
@@ -51,7 +51,7 @@ tags mark approved versions if you ever need to go back.
 
 ## To do
 
-- [ ] Replace the three stock process photos with real photos of C&C's shop and finished work
+- [ ] Sandblast & Prep card still uses a stock photo; swap in a real photo of blasting when Tom sends it (spray booth, oven and shop gallery photos went live 2026-11-16)
 - [ ] Domain transfer: Abstract Marketing unlocked cccoatings.com and sent the transfer (EPP) code on 2026-11-16 (kept in Tom's email, not here). Tom initiates the transfer in Cloudflare (Domain Registration → Transfer Domains); registrant contact info is updated only after the transfer completes (changing it first triggers a 60-day transfer lock)
 - [ ] After the transfer, decline the Abstract Marketing hosting renewal (end of December)
 - [ ] Optional: trim the SPF record in Cloudflare to `v=spf1 include:_spf.google.com ~all` (drops the old host's server)
