@@ -52,7 +52,7 @@ tags mark approved versions if you ever need to go back.
 ## To do
 
 - [ ] Replace the three stock process photos with real photos of C&C's shop and finished work
-- [ ] Domain transfer: Abstract Marketing to move cccoatings.com into Tom's GoDaddy account (email sent Nov 2026)
+- [ ] Domain transfer: Abstract Marketing unlocked cccoatings.com and sent the transfer (EPP) code on 2026-11-16 (kept in Tom's email, not here). Tom initiates the transfer at the receiving registrar; registrant contact info is updated only after the transfer completes (changing it first triggers a 60-day transfer lock)
 - [ ] After the transfer, decline the Abstract Marketing hosting renewal (end of December)
 - [ ] Optional: trim the SPF record in Cloudflare to `v=spf1 include:_spf.google.com ~all` (drops the old host's server)
 - [ ] Optional: one page per service (Teflon/PTFE, Halar, sandblasting, powder) for better search ranking
